@@ -1,3 +1,5 @@
+
+
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -7,7 +9,11 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'] 
+      },
+    },
   },
   plugins: [],
 }

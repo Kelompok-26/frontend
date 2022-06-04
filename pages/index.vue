@@ -1,5 +1,5 @@
 <template>
-<div class="w-full h-auto mx-auto flex flex-col gap-6 max-w-screen-2xl">
+<div class="w-full h-auto mx-auto flex flex-col gap-6 max-w-screen-2xl font-poppins">
     <Navbar/>
 
     <!-- Start Content -->
