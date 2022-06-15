@@ -11,14 +11,14 @@
       >
         <div class="absolute top-[15%] right-[10%]">
           <div class="flex flex-col text-white">
-            <h4 class="text-right font-bold">{{ benefit }}</h4>
-            <h4 class="text-right font-bold text-5xl">{{ jumlah }}</h4>
+            <h4 class="text-right font-bold">{{ productType }}</h4>
+            <h4 class="text-right font-bold text-5xl">{{ nominal }}</h4>
           </div>
         </div>
       </div>
       <div class="flex gap-1">
-        <h4 class="font-bold ml-1">{{ benefit }}</h4>
-        <h4 class="font-bold">{{ jumlah }}</h4>
+        <h4 class="font-bold ml-1">{{ productType }}</h4>
+        <h4 class="font-bold">{{ nominal }}</h4>
       </div>
 
       <p class="font-light ml-1">{{ poin }}</p>
@@ -35,10 +35,10 @@ export default {
       type: String,
     },
 
-    jumlah: {
+    nominal: {
       type: String,
     },
-    benefit: {
+    productType: {
       type: String,
     },
 

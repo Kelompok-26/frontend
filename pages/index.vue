@@ -137,8 +137,8 @@
           </div>
 
           <Card
-            :jumlah="'5k'"
-            :benefit="'Pulsa'"
+            :nominal="'5k'"
+            :productType="'Pulsa'"
             :poin="'10 Poin'"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/pulsa_Dgic1XZnM.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300119237'"
           />
@@ -264,10 +264,7 @@
 import Card from '../components/Card.vue'
 export default {
   data() {
-    return {
-      bgPaket:
-        'https://ik.imagekit.io/drigoalexander/unsplash_vHkj3fX9wCk_Yvsg7Kmfh.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655294892830',
-    }
+    return {}
   },
   name: 'IndexPage',
   components: { Card },
