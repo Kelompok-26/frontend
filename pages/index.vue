@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <!-- <Navbar/> -->
+
 
     <!-- Start Content -->
     <div class="w-full px-10 flex flex-col gap-6">
