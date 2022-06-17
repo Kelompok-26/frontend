@@ -198,7 +198,12 @@
       <div class="flex flex-col gap-6">
         <div class="flex flex-row justify-between items-center">
           <p class="text-xl font-bold">Rekomendasi E-Money</p>
-          <p class="text-lg font-light">Semua<span class="pl-2">></span></p>
+          <p
+            @click="redirectBenefit(emoney)"
+            class="text-lg font-light cursor-pointer"
+          >
+            Semua<span class="pl-2">></span>
+          </p>
         </div>
 
         <div
@@ -322,6 +327,8 @@
 // import Navbar from '../components/navbar.vue'
 import Card from '../components/card.vue'
 export default {
+  name: 'IndexPage',
+  components: { Card },
   data() {
     return {
       paketData: [
@@ -472,7 +479,16 @@ export default {
       ],
     }
   },
-  name: 'IndexPage',
-  components: { Card },
+
+  methods: {
+    redirectBenefit(objBenefit) {
+      this.$router.push({
+        name: 'User-produtType',
+        params: { objBft: objBenefit },
+      })
+
+      console.log(objBenefit)
+    },
+  },
 }
 </script>

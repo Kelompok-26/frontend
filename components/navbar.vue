@@ -6,12 +6,17 @@
     <h1 class="text-2xl font-bold">C-Loyal</h1>
 
     <div class="flex items-center gap-16">
-      <p class="hover:font-bold transition-all">Home</p>
-
+      <NuxtLink to="/">
+        <p class="hover:font-bold transition-all">Home</p>
+      </NuxtLink>
       <p class="hover:font-bold transition-all">Riwayat</p>
+      <NuxtLink to="/User/point-user">
+        <p class="hover:font-bold transition-all">Poin</p>
+      </NuxtLink>
+      <NuxtLink to="/User/Redeem"
+        ><p class="hover:font-bold transition-all">Redeem</p></NuxtLink
+      >
 
-      <p class="hover:font-bold transition-all">Poin</p>
-      <p class="hover:font-bold transition-all">Redeem</p>
       <p class="hover:font-bold transition-all">FAQ</p>
     </div>
 
