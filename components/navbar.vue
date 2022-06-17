@@ -16,8 +16,9 @@
       <NuxtLink to="/User/Redeem"
         ><p class="hover:font-bold transition-all">Redeem</p></NuxtLink
       >
-
-      <p class="hover:font-bold transition-all">FAQ</p>
+      <NuxtLink to="/User/FAQ">
+        <p class="hover:font-bold transition-all">FAQ</p>
+      </NuxtLink>
     </div>
 
     <div class="flex gap-6 items-center">
