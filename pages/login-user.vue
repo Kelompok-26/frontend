@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-screen mx-auto flex flex-row max-w-screen-2xl">
+    <div class="w-full h-screen mx-auto flex flex-row max-w-screen-2xl bg-[#145374]">
 
 
       <!-- Start Content -->
@@ -12,22 +12,22 @@
         
             <div class="flex flex-col py-12 gap-10 w-96">
               <div class="font-semibold w-96">
-                <span class="text-2xl">Welcome! <br> LogIn to continue</span>
+                <span class="text-2xl text-white">Welcome! <br> LogIn to continue</span>
               </div>
 
               <div class="flex flex-col w-96">
-                <label class="">Phone Number or Email</label>
+                <label class="text-white">Phone Number or Email</label>
                 <input type="text" class="bg-gray-200 rounded-lg w-full py-2 px-4 text-gray-700">
               </div>
               
               <div class="flex flex-col w-96">
-                <label class="">Password</label>
+                <label class="text-white">Password</label>
                 <input type="text" class="bg-gray-200 rounded-lg w-full py-2 px-4 text-gray-700">
               </div>
 
-              <button class="text-slate-100 font-bold bg-gray-700 w-96 py-2 px-4 rounded-2xl">Login</button>
+              <button class="text-slate-100 bg-[#EE6F57] w-96 py-2 px-4 rounded-md">Login</button>
 
-              <span class="text-gray-700 self-center">Dont have account? <strong>Register Now!</strong></span>
+              <span class="text-white self-center">Dont have account? <a href="#" class="text-[#EE6F57]">Register Now!</a></span>
             </div>
       
         </div>  
@@ -38,4 +38,4 @@
       </div>
       <!-- End Content -->
   </div>
-</template>
+</template>    
