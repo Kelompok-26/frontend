@@ -7,14 +7,6 @@
             <div class="flex justify-evenly">
               <span class="text-2xl font-bold">Frequently Ask Question</span>
             </div>
-
-            <div class="flex justify-evenly relative rounded">
-              <button class="absolute inset-y-0 left-2">
-                <svg class="h-6 w-6 stroke-2 stroke-gray-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" ><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-              </button>
-              <input type="search" class="rounded-full form-control inline-block min-w-0 block pl-10 px-3 py-1.5 text-base font-normal w-96 text-gray-700 bg-white bg-clip-padding rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Apa yang bisa kami bantu?" aria-label="Search" aria-describedby="button-addon2">
-              
-            </div>
           </div>
 
       <!-- Start Bar Question -->
