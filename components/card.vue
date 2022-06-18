@@ -11,7 +11,7 @@
       >
         <div class="absolute top-[15%] right-[10%]">
           <div class="flex flex-col text-white">
-            <h4 class="text-right font-bold">{{ productType }}</h4>
+            <h4 class="text-right font-bold text-base">{{ productType }}</h4>
             <h4 class="text-right font-bold text-5xl">{{ nominal }}</h4>
           </div>
         </div>
