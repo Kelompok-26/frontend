@@ -1,10 +1,22 @@
-# STORE
+export const state = () => ({
 
-**This directory is not required, you can delete it if you don't want to use it.**
+})
 
-This directory contains your Vuex Store files.
-Vuex Store option is implemented in the Nuxt.js framework.
+export const getter = {
 
-Creating a file in this directory automatically activates the option in the framework.
+}
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/vuex-store).
+export const mutations = {
+increment(state) {
+state.counter++
+}
+}
+
+export const actions = {
+async fetchCounter(state) {
+// make request
+const res = { data: 10 };
+state.counter = res.data;
+return res.data;
+}
+}
