@@ -46,7 +46,5 @@ export default {
       type: String,
     },
   },
-
-  data() {},
 }
 </script>
