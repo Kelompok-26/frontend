@@ -1,10 +1,6 @@
 <template>
   <div class="w-full px-10 flex flex-col gap-6">
-    <div class="flex justify-between items-center gap-6">
-      <div class="flex justify-evenly">
         <span class="text-2xl font-bold">Detail Riwayat Transaksi</span>
-      </div>
-    </div>
     <!-- Koreksi Drigo
     Line 3,4,6,7 gaperlu rahmaa, itu bisa dihapus aja.  kita gaperlu nge flexin tulisan Detail riwayat transaksi karena 
     gaada item yang bisa mempengaruhi dia. untuk dia ke susun kebawah udah di bikin oleh flex-col di line 2. jadi struktur nya
@@ -46,7 +42,7 @@
     </div>
 
     <!-- Koreksi Drigo -->
-    <!-- <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4">
       <div class="w-full aspect-[7/1] bg-[#145374] rounded-md">
         <div class="flex flex-col gap-2 px-8 py-6 text-white text-xl">
           <div class="flex gap-[4px]">
@@ -83,7 +79,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- End Koreksi Drigo -->
     <div class="flex justify-center">

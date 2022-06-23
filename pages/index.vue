@@ -133,7 +133,12 @@
       <div class="flex flex-col gap-6">
         <div class="flex flex-row justify-between items-center">
           <p class="text-xl font-bold">Rekomendasi Paket Data</p>
-          <p class="text-lg font-light">Semua<span class="pl-2">></span></p>
+          <p
+            class="text-lg font-semibold text-[#145374] cursor-pointer"
+            @click="showAllBenefit(paketDataParam)"
+          >
+            Semua
+          </p>
         </div>
         <div
           class="flex gap-4 pb-4 overscroll-x-contain overflow-x-scroll w-auto scrollbar-hide"
@@ -154,13 +159,19 @@
       <div class="flex flex-col gap-6">
         <div class="flex flex-row justify-between items-center">
           <p class="text-xl font-bold">Rekomendasi Pulsa</p>
-          <p class="text-lg font-light">Semua<span class="pl-2">></span></p>
+          <p
+            class="text-lg font-semibold text-[#145374] cursor-pointer"
+            @click="showAllBenefit(pulsaParam)"
+          >
+            Semua
+          </p>
         </div>
 
         <div
           class="flex gap-4 pb-4 overscroll-x-contain overflow-x-scroll w-auto scrollbar-hide"
         >
           <Card
+            
             v-for="paket in pulsa"
             :key="paket"
             :nominal="paket.nominal"
@@ -176,7 +187,12 @@
       <div class="flex flex-col gap-6">
         <div class="flex flex-row justify-between items-center">
           <p class="text-xl font-bold">Rekomendasi Cashout</p>
-          <p class="text-lg font-light">Semua<span class="pl-2">></span></p>
+          <p
+            class="text-lg font-semibold text-[#145374] cursor-pointer"
+            @click="showAllBenefit(cashoutParam)"
+          >
+            Semua
+          </p>
         </div>
 
         <div
@@ -199,10 +215,10 @@
         <div class="flex flex-row justify-between items-center">
           <p class="text-xl font-bold">Rekomendasi E-Money</p>
           <p
-            @click="redirectBenefit(emoney)"
-            class="text-lg font-light cursor-pointer"
+            @click="showAllBenefit(emoneyParam)"
+            class="text-lg font-semibold text-[#145374] cursor-pointer"
           >
-            Semua<span class="pl-2">></span>
+            Semua
           </p>
         </div>
 
@@ -224,271 +240,53 @@
     <!-- End Benefit & Redeem-->
 
     <!-- Start Fitur Tersedia -->
-    <div
-      class="flex flex-col gap-4 bg-[#F6F5F5] rounded-md shadow-lg items-center justify-center py-6"
-    >
-      <p class="font-bold">C-Loyal menyediakan layanan bertransaksi berupa</p>
-      <div class="flex w-full items-center justify-evenly">
-        <div class="flex flex-col gap-2 items-center justify-center">
-          <svg
-            width="124"
-            height="125"
-            viewBox="0 0 124 125"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M108.5 93.7273H93V78.2273H85.25V93.7273H69.75V101.477H85.25V116.977H93V101.477H108.5V93.7273Z"
-              fill="#00334E"
-            />
-            <path
-              d="M38.75 109.227V39.4773H85.25V66.6023H93V23.9773C92.9979 21.9225 92.1808 19.9524 90.7278 18.4995C89.2749 17.0465 87.3048 16.2293 85.25 16.2273H38.75C36.6952 16.2293 34.7252 17.0465 33.2722 18.4995C31.8192 19.9524 31.0021 21.9225 31 23.9773V109.227C31.0021 111.282 31.8192 113.252 33.2722 114.705C34.7252 116.158 36.6952 116.975 38.75 116.977H62V109.227H38.75ZM38.75 23.9773H85.25V31.7273H38.75V23.9773Z"
-              fill="#00334E"
-            />
-          </svg>
-          <p class="font-bold text-black">Pulsa</p>
-        </div>
 
-        <div class="flex flex-col gap-2 items-center justify-center">
-          <svg
-            width="124"
-            height="125"
-            viewBox="0 0 124 125"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10.3333 36.8939C10.3333 34.1533 11.4219 31.525 13.3598 29.5871C15.2977 27.6492 17.926 26.5605 20.6666 26.5605H103.333C106.074 26.5605 108.702 27.6492 110.64 29.5871C112.578 31.525 113.667 34.1533 113.667 36.8939V88.5605C113.667 91.3011 112.578 93.9294 110.64 95.8673C108.702 97.8052 106.074 98.8939 103.333 98.8939H20.6666C17.926 98.8939 15.2977 97.8052 13.3598 95.8673C11.4219 93.9294 10.3333 91.3011 10.3333 88.5605V36.8939Z"
-              stroke="#00334E"
-              stroke-width="5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M62 78.2268C70.5604 78.2268 77.5 71.2872 77.5 62.7268C77.5 54.1664 70.5604 47.2268 62 47.2268C53.4396 47.2268 46.5 54.1664 46.5 62.7268C46.5 71.2872 53.4396 78.2268 62 78.2268Z"
-              stroke="#00334E"
-              stroke-width="5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M92.9999 98.8939C92.9999 93.4127 95.1773 88.1561 99.053 84.2803C102.929 80.4046 108.185 78.2272 113.667 78.2272M10.3333 47.2272C15.8144 47.2272 21.071 45.0498 24.9468 41.1741C28.8225 37.2983 30.9999 32.0417 30.9999 26.5605L10.3333 47.2272Z"
-              stroke="#00334E"
-              stroke-width="5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-
-          <p class="font-bold text-black">Cashout</p>
-        </div>
-
-        <div class="flex flex-col gap-2 items-center justify-center">
-          <svg
-            width="124"
-            height="125"
-            viewBox="0 0 124 125"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M55.7999 37.9276C52.5112 37.9276 49.3572 39.2341 47.0318 41.5595C44.7063 43.885 43.3999 47.039 43.3999 50.3276C43.3999 53.6163 44.7063 56.7703 47.0318 59.0958C49.3572 61.4212 52.5112 62.7276 55.7999 62.7276C59.0886 62.7276 62.2426 61.4212 64.568 59.0958C66.8935 56.7703 68.1999 53.6163 68.1999 50.3276C68.1999 47.039 66.8935 43.885 64.568 41.5595C62.2426 39.2341 59.0886 37.9276 55.7999 37.9276ZM49.5999 50.3276C49.5999 48.6833 50.2531 47.1063 51.4158 45.9436C52.5786 44.7809 54.1556 44.1276 55.7999 44.1276C57.4442 44.1276 59.0212 44.7809 60.184 45.9436C61.3467 47.1063 61.9999 48.6833 61.9999 50.3276C61.9999 51.972 61.3467 53.549 60.184 54.7117C59.0212 55.8744 57.4442 56.5276 55.7999 56.5276C54.1556 56.5276 52.5786 55.8744 51.4158 54.7117C50.2531 53.549 49.5999 51.972 49.5999 50.3276ZM12.3999 28.6276C12.3999 26.1611 13.3797 23.7956 15.1238 22.0515C16.8679 20.3075 19.2334 19.3276 21.6999 19.3276H89.8999C92.3664 19.3276 94.7319 20.3075 96.476 22.0515C98.2201 23.7956 99.1999 26.1611 99.1999 28.6276V50.3276H92.9999V44.1276H86.7999C83.5112 44.1276 80.3572 42.8212 78.0318 40.4958C75.7063 38.1703 74.3999 35.0163 74.3999 31.7276V25.5276H37.1999V31.7276C37.1999 35.0163 35.8935 38.1703 33.568 40.4958C31.2426 42.8212 28.0886 44.1276 24.7999 44.1276H18.5999V56.5276H24.7999C28.0886 56.5276 31.2426 57.8341 33.568 60.1595C35.8935 62.485 37.1999 65.639 37.1999 68.9276V75.1276H68.1999V81.3276H21.6999C19.2334 81.3276 16.8679 80.3478 15.1238 78.6037C13.3797 76.8596 12.3999 74.4942 12.3999 72.0276V28.6276ZM21.6999 25.5276C20.8777 25.5276 20.0892 25.8542 19.5079 26.4356C18.9265 27.017 18.5999 27.8055 18.5999 28.6276V37.9276H24.7999C26.4442 37.9276 28.0212 37.2744 29.184 36.1117C30.3467 34.949 30.9999 33.372 30.9999 31.7276V25.5276H21.6999ZM89.8999 25.5276H80.5999V31.7276C80.5999 33.372 81.2531 34.949 82.4158 36.1117C83.5786 37.2744 85.1556 37.9276 86.7999 37.9276H92.9999V28.6276C92.9999 27.8055 92.6733 27.017 92.0919 26.4356C91.5106 25.8542 90.7221 25.5276 89.8999 25.5276ZM21.6999 75.1276H30.9999V68.9276C30.9999 67.2833 30.3467 65.7063 29.184 64.5436C28.0212 63.3809 26.4442 62.7276 24.7999 62.7276H18.5999V72.0276C18.5999 72.8498 18.9265 73.6383 19.5079 74.2197C20.0892 74.801 20.8777 75.1276 21.6999 75.1276ZM105.4 50.3276V32.2546C107.214 32.896 108.784 34.0841 109.895 35.6554C111.005 37.2266 111.601 39.1036 111.6 41.0276V50.3276H105.4ZM68.1999 87.5276V93.7276H34.0999C32.1759 93.7286 30.2989 93.1329 28.7277 92.0225C27.1564 90.912 25.9682 89.3416 25.3269 87.5276H68.1999ZM83.6999 56.5276C81.2334 56.5276 78.8679 57.5075 77.1238 59.2515C75.3797 60.9956 74.3999 63.3611 74.3999 65.8276V109.228C74.3999 111.694 75.3797 114.06 77.1238 115.804C78.8679 117.548 81.2334 118.528 83.6999 118.528H108.5C110.966 118.528 113.332 117.548 115.076 115.804C116.82 114.06 117.8 111.694 117.8 109.228V65.8276C117.8 63.3611 116.82 60.9956 115.076 59.2515C113.332 57.5075 110.966 56.5276 108.5 56.5276H83.6999ZM83.6999 81.3276H89.8999C90.7221 81.3276 91.5106 81.6542 92.0919 82.2356C92.6733 82.817 92.9999 83.6055 92.9999 84.4276C92.9999 85.2498 92.6733 86.0383 92.0919 86.6197C91.5106 87.201 90.7221 87.5276 89.8999 87.5276H83.6999C82.8777 87.5276 82.0892 87.201 81.5079 86.6197C80.9265 86.0383 80.5999 85.2498 80.5999 84.4276C80.5999 83.6055 80.9265 82.817 81.5079 82.2356C82.0892 81.6542 82.8777 81.3276 83.6999 81.3276ZM102.3 81.3276H108.5C109.322 81.3276 110.111 81.6542 110.692 82.2356C111.273 82.817 111.6 83.6055 111.6 84.4276C111.6 85.2498 111.273 86.0383 110.692 86.6197C110.111 87.201 109.322 87.5276 108.5 87.5276H102.3C101.478 87.5276 100.689 87.201 100.108 86.6197C99.5265 86.0383 99.1999 85.2498 99.1999 84.4276C99.1999 83.6055 99.5265 82.817 100.108 82.2356C100.689 81.6542 101.478 81.3276 102.3 81.3276ZM83.6999 93.7276H89.8999C90.7221 93.7276 91.5106 94.0542 92.0919 94.6356C92.6733 95.217 92.9999 96.0055 92.9999 96.8276C92.9999 97.6498 92.6733 98.4383 92.0919 99.0197C91.5106 99.601 90.7221 99.9276 89.8999 99.9276H83.6999C82.8777 99.9276 82.0892 99.601 81.5079 99.0197C80.9265 98.4383 80.5999 97.6498 80.5999 96.8276C80.5999 96.0055 80.9265 95.217 81.5079 94.6356C82.0892 94.0542 82.8777 93.7276 83.6999 93.7276ZM102.3 93.7276H108.5C109.322 93.7276 110.111 94.0542 110.692 94.6356C111.273 95.217 111.6 96.0055 111.6 96.8276C111.6 97.6498 111.273 98.4383 110.692 99.0197C110.111 99.601 109.322 99.9276 108.5 99.9276H102.3C101.478 99.9276 100.689 99.601 100.108 99.0197C99.5265 98.4383 99.1999 97.6498 99.1999 96.8276C99.1999 96.0055 99.5265 95.217 100.108 94.6356C100.689 94.0542 101.478 93.7276 102.3 93.7276ZM83.6999 106.128H89.8999C90.7221 106.128 91.5106 106.454 92.0919 107.036C92.6733 107.617 92.9999 108.405 92.9999 109.228C92.9999 110.05 92.6733 110.838 92.0919 111.42C91.5106 112.001 90.7221 112.328 89.8999 112.328H83.6999C82.8777 112.328 82.0892 112.001 81.5079 111.42C80.9265 110.838 80.5999 110.05 80.5999 109.228C80.5999 108.405 80.9265 107.617 81.5079 107.036C82.0892 106.454 82.8777 106.128 83.6999 106.128ZM102.3 106.128H108.5C109.322 106.128 110.111 106.454 110.692 107.036C111.273 107.617 111.6 108.405 111.6 109.228C111.6 110.05 111.273 110.838 110.692 111.42C110.111 112.001 109.322 112.328 108.5 112.328H102.3C101.478 112.328 100.689 112.001 100.108 111.42C99.5265 110.838 99.1999 110.05 99.1999 109.228C99.1999 108.405 99.5265 107.617 100.108 107.036C100.689 106.454 101.478 106.128 102.3 106.128ZM80.5999 65.8276C80.5999 65.0055 80.9265 64.217 81.5079 63.6356C82.0892 63.0542 82.8777 62.7276 83.6999 62.7276H108.5C109.322 62.7276 110.111 63.0542 110.692 63.6356C111.273 64.217 111.6 65.0055 111.6 65.8276V72.0276C111.6 72.8498 111.273 73.6383 110.692 74.2197C110.111 74.801 109.322 75.1276 108.5 75.1276H83.6999C82.8777 75.1276 82.0892 74.801 81.5079 74.2197C80.9265 73.6383 80.5999 72.8498 80.5999 72.0276V65.8276Z"
-              fill="#00334E"
-            />
-          </svg>
-
-          <p class="font-bold text-black">E-Money</p>
-        </div>
-
-        <div class="flex flex-col gap-2 items-center justify-center">
-          <svg
-            width="124"
-            height="125"
-            viewBox="0 0 124 125"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M113.667 85.9773V54.9773H90.4166V70.4773H98.1666V85.9773H82.6666V39.4773H113.667V23.9773H82.6666C78.5557 23.9773 74.6132 25.6103 71.7064 28.5171C68.7996 31.424 67.1666 35.3664 67.1666 39.4773V85.9773C67.1666 90.0882 68.7996 94.0306 71.7064 96.9374C74.6132 99.8443 78.5557 101.477 82.6666 101.477H98.1666C102.277 101.477 106.22 99.8443 109.127 96.9374C112.034 94.0306 113.667 90.0882 113.667 85.9773ZM41.3333 101.477H56.8333V23.9773H41.3333V54.9773H25.8333V23.9773H10.3333V70.4773H41.3333V101.477Z"
-              fill="#00334E"
-            />
-          </svg>
-
-          <p class="font-bold text-black">Paket Data</p>
-        </div>
-      </div>
-    </div>
-
+    <layanan />
     <!-- End Fitur Tersedia -->
   </div>
 </template>
 
 <script>
-// import Navbar from '../components/navbar.vue'
-import Card from '../components/card.vue'
+import Card from '../components/Card.vue'
+import Layanan from '../components/layanan.vue'
+
 export default {
   name: 'IndexPage',
-  components: { Card },
   data() {
     return {
-      paketData: [
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-      ],
-
-      pulsa: [
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-      ],
-
-      cashout: [
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-      ],
-
-      emoney: [
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-      ],
+      paketDataParam: 'paketData',
+      pulsaParam: 'pulsa',
+      cashoutParam: 'cashout',
+      emoneyParam: 'emoney',
     }
   },
 
-  methods: {
-    redirectBenefit(objBenefit) {
-      this.$router.push({
-        name: 'User-produtType',
-        params: { objBft: objBenefit },
-      })
+  computed: {
+    paketData() {
+      return this.$store.state.product.paketData
+    },
 
-      console.log(objBenefit)
+    pulsa() {
+      return this.$store.state.product.pulsa
+    },
+    cashout() {
+      return this.$store.state.product.cashout
+    },
+    emoney() {
+      return this.$store.state.product.emoney
     },
   },
+  methods: {
+    showAllBenefit(prodType) {
+      this.$router.push({
+        name: 'User-product-productType',
+        params: {
+          productType: prodType,
+        },
+      })
+    },
+  },
+
+  components: { Card, Layanan },
 }
 </script>

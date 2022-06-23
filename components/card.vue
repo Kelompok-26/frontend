@@ -1,8 +1,12 @@
 <!-- Please remove this file from your project -->
 <template>
-  <div class="flex items-center justify-start ml-2 gap-4">
+  <div
+    class="flex items-center justify-start ml-2 gap-4"
+    ref="scroll.container"
+    v-on:scroll="scrollX"
+  >
     <div
-      class="w-auto flex flex-col rounded-lg bg-white shadow-lg px-2 py-2 gap-1"
+      class="w-auto flex flex-col rounded-lg bg-white shadow-lg px-2 py-2 gap-1 cursor-pointer"
     >
       <!-- {{ backgroundImage }} -->
       <div
@@ -28,7 +32,7 @@
 
 <script>
 export default {
-  name: 'BenefitCard',
+  name: 'Card',
   components: true,
   props: {
     backgroundImage: {
@@ -47,6 +51,10 @@ export default {
     },
   },
 
-  data() {},
+  methods: {
+    scrollX(e) {
+      e.scrollLeft += e.deltaY
+    },
+  },
 }
 </script>
