@@ -23,7 +23,7 @@
       </NuxtLink>
     </div>
 
-    <div class="flex gap-6 items-center">
+    <div class="flex gap-6 items-center relative">
       <svg
         width="60"
         height="58"
@@ -37,7 +37,47 @@
         />
       </svg>
 
-      <p class="font-bold">Username</p>
+      <p class="font-bold cursor-pointer" @click="openProfile = !openProfile">
+        Username
+      </p>
+      <div
+        :class="{
+          'translate-y-0': openProfile,
+          ' -translate-y-[36rem]': !openProfile,
+          'opacity-100': openProfile,
+          'opacity-0': !openProfile,
+          'z-10 ': openProfile,
+          '-z-10': !openProfile,
+        }"
+        class="absolute -bottom-[30rem] duration-700 ease-in-out rounded-lg py-6 right-0 w-72 h-[29rem] flex flex-col gap-8 justify-start bg-[#f6f5f5] shadow-lg"
+      >
+        <div
+          class="px-6 flex flex-col gap-2 items-center justify-center w-full"
+        >
+          <div
+            class="w-20 aspect-square rounded-full overflow-hidden bg-gray-500"
+          ></div>
+
+          <p class="font-semibold">Indah Cahya</p>
+          <p class="font-light text-xs">@indahcahya</p>
+        </div>
+
+        <div class="flex flex-col gap-8 px-6">
+          <span class="cursor-pointer">Edit Profile</span>
+          <span class="cursor-pointer">Privacy Policy</span>
+          <span class="cursor-pointer">Terms of Service</span>
+        </div>
+
+        <hr class="w-full border-b-1 border-gray-700" />
+
+        <div class="flex items-center justify-center">
+          <button
+            class="flex items-center w-auto px-6 justify-center text-white text-xs aspect-[3/1] rounded-md bg-[#145374]"
+          >
+            Simpan
+          </button>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
@@ -46,5 +86,11 @@
 export default {
   name: 'NavigationBar',
   components: true,
+
+  data() {
+    return {
+      openProfile: false,
+    }
+  },
 }
 </script>
