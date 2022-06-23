@@ -189,6 +189,7 @@
 </template>
 
 <script>
+import Card from '../../components/Card.vue'
 export default {
   data() {
     return {
@@ -224,7 +225,6 @@ export default {
           poin: '10 Poin',
         },
       ],
-
       pulsa: [
         {
           nominal: '10k',
@@ -262,7 +262,6 @@ export default {
           poin: '10 Poin',
         },
       ],
-
       cashout: [
         {
           nominal: '10k',
@@ -300,7 +299,6 @@ export default {
           poin: '10 Poin',
         },
       ],
-
       emoney: [
         {
           nominal: '10k',
@@ -340,6 +338,7 @@ export default {
       ],
     }
   },
+  components: { Card },
 }
 </script>
 

@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'BenefitCard',
+  name: 'Card',
   components: true,
   props: {
     backgroundImage: {
