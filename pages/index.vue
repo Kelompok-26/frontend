@@ -144,8 +144,8 @@
           class="flex gap-4 pb-4 overscroll-x-contain overflow-x-scroll w-auto scrollbar-hide"
         >
           <Card
-            v-for="paket in paketData"
-            :key="paket"
+            v-for="(paket, idx) in paketData"
+            :key="idx"
             :nominal="paket.nominal"
             :productType="paket.productType"
             :poin="paket.poin"
@@ -171,9 +171,8 @@
           class="flex gap-4 pb-4 overscroll-x-contain overflow-x-scroll w-auto scrollbar-hide"
         >
           <Card
-            
-            v-for="paket in pulsa"
-            :key="paket"
+            v-for="(paket, idx) in pulsa"
+            :key="idx"
             :nominal="paket.nominal"
             :productType="paket.productType"
             :poin="paket.poin"
@@ -199,8 +198,8 @@
           class="flex gap-4 pb-4 overscroll-x-contain overflow-x-scroll w-auto scrollbar-hide"
         >
           <Card
-            v-for="paket in cashout"
-            :key="paket"
+            v-for="(paket, idx) in cashout"
+            :key="idx"
             :nominal="paket.nominal"
             :productType="paket.productType"
             :poin="paket.poin"
@@ -226,8 +225,8 @@
           class="flex gap-4 pb-4 overscroll-x-contain overflow-x-scroll w-auto scrollbar-hide"
         >
           <Card
-            v-for="paket in emoney"
-            :key="paket"
+            v-for="(paket, idx) in emoney"
+            :key="idx"
             :nominal="paket.nominal"
             :productType="paket.productType"
             :poin="paket.poin"
@@ -247,8 +246,8 @@
 </template>
 
 <script>
-import Card from '../components/Card.vue'
-import Layanan from '../components/layanan.vue'
+import Card from '~/components/Card.vue'
+import Layanan from '~/components/layanan.vue'
 
 export default {
   name: 'IndexPage',
