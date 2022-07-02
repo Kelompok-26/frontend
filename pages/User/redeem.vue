@@ -3,7 +3,7 @@
     class="w-full h-auto mx-auto relative max-w-screen-2xl font-poppins bg-gray-200 backdrop-blur-md"
   >
     <div class="px-10 flex flex-col gap-6 relative">
-      <div
+      <!-- <div
         class="w-full py-4 flex items-center gap-10 px-10 bg-[#FFFFFF] rounded-md"
       >
         <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden"></div>
@@ -11,26 +11,27 @@
         <div class="flex flex-col gap-2">
           <p class="font-light">Halo,</p>
           <h1 class="font-bold text-xl">Drigo Alexander</h1>
+
         </div>
-      </div>
+      </div> -->
 
       <div class="flex flex-col gap-8">
-        <h3 class="text-xl font-bold">Redeem Menu</h3>
-        <div class="w-full px-2 py-1 bg-white rounded-md shadow-md">
+        <h3 class="text-[33px] font-semibold">Redeem Menu</h3>
+        <div class="w-full px-3 font-medium py-1 bg-white rounded-md shadow-md text-black">
           Untuk melakukan redeem yang kamu inginkan, yuk isi form dibawah ini
         </div>
       </div>
 
       <form action="">
         <div
-          class="flex flex-col gap-10 bg-white w-full pl-28 pr-6 py-4 shadow-md rounded-lg"
+          class="flex flex-col gap-10 bg-white w-full pl-28 pr-6 py-12 shadow-md rounded-lg"
         >
           <div class="flex items-center justify-center">
-            <h4 class="text-lg font-bold">Form Pengisian Redeem</h4>
+            <h4 class="text-2xl font-bold">Form Pengisian Redeem</h4>
           </div>
           <!-- Nama -->
           <div class="flex gap-4 w-full items-center justify-evenly">
-            <label for="Nama" class="w-1/5 text-2xl">Nama</label>
+            <label for="Nama" class="w-1/5 text-xl font-semibold">Nama</label>
             <input
               type="text"
               class="bg-gray-100 w-full px-2 py-2 aspect-[12.7/1] text-2xl"
@@ -40,7 +41,7 @@
 
           <!-- Start Type Redeem -->
           <div class="flex gap-4 w-full items-center justify-evenly">
-            <label for="type-redeem" class="w-1/5 text-2xl">Type Redeem</label>
+            <label for="type-redeem" class="w-1/5 text-xl font-semibold">Type Redeem</label>
             <input
               type="text"
               class="bg-gray-100 w-full px-2 py-2 aspect-[12.7/1] text-2xl"
@@ -51,7 +52,7 @@
 
           <!-- Start Nominal -->
           <div class="flex gap-4 w-full items-center justify-evenly">
-            <label for="nominal" class="w-1/5 text-2xl">Nominal</label>
+            <label for="nominal" class="w-1/5 text-xl font-semibold">Nominal</label>
             <input
               type="text"
               class="bg-gray-100 w-full px-2 py-2 aspect-[12.7/1] text-2xl"
@@ -60,12 +61,12 @@
           <!-- End Nominal -->
           <!-- Start Point Didapat -->
           <div class="flex gap-4 w-full items-center justify-evenly">
-            <label for="point-didapat" class="w-1/5 text-2xl"
+            <label for="point-didapat" class="w-1/5 text-xl font-semibold"
               >Poin didapat</label
             >
             <input
               type="text"
-              class="bg-gray-100 w-full px-2 py-2 aspect-[12.7/1] text-2xl"
+              class="bg-gray-100 w-full px-2 py-2 aspect-[12.7/1] text-xl"
             />
           </div>
 
@@ -73,18 +74,18 @@
 
           <!-- Start Tanggal -->
           <div class="flex gap-4 w-full items-center justify-evenly">
-            <label for="Tanggal" class="w-1/5 text-2xl">Tanggal</label>
+            <label for="Tanggal" class="w-1/5 text-xl font-semibold">Tanggal</label>
             <input
               type="date"
-              class="bg-gray-100 w-full px-2 py-2 aspect-[12.7/1] text-2xl"
+              class="bg-gray-100 w-full px-2 py-2 aspect-[12.7/1] text-xl"
             />
           </div>
           <!-- End Tanggal -->
 
           <div class="flex justify-end cursor-pointer">
             <div
+              class="aspect-[2.3/1] px-6 text-white text-lg bg-[#145374] rounded-md flex items-center justify-center"
               @click="isSubmit = true"
-              class="aspect-[2.3/1] px-6 text-white bg-[#145374] rounded-md flex items-center justify-center"
             >
               Submit
             </div>
@@ -984,8 +985,8 @@
         </p>
         <button
           type="submit"
-          @click="isSubmit = false"
           class="text-white rounded-md w-auto aspect-[2.3/1] px-6 flex items-center justify-center bg-[#145374]"
+          @click="isSubmit = false"
         >
           Tutup
         </button>
@@ -996,11 +997,29 @@
 
 <script>
 export default {
+  name: 'RedeemPages',
   data() {
     return {
       isSubmit: false,
     }
   },
+  computed: {
+    listPulsa() {
+      return this.$store.state.user.user
+    },
+  },
+  mounted() {
+    this.fetchProduct({
+    })
+  },
+  methods: {
+    fetchProduct() {
+      this.$store.dispatch('user/fetchProduct', {
+
+      })
+    },
+  }
+
 }
 </script>
 

@@ -1,18 +1,18 @@
 <template>
   <!-- Start Content -->
   <div class="w-full px-10 flex flex-col gap-6">
-    <span class="text-[46px] font-semibold">Riwayat Transaksi dan Poin</span>
+    <span class="text-[33px] font-semibold">Riwayat Transaksi dan Poin</span>
     <div class="items-center justify-evenly gap-6">
       <button
         @click="pageTransaksi = true"
-        :class="{ 'bg-[#EE6F57]': pageTransaksi }"
-        class="inline-block bg-white-100 border-2 w-72 border-[#EE6F57] px-4 py-4 gap-3 rounded-md"
+        :class="{ 'bg-[#00334E]': pageTransaksi }"
+        class="inline-block bg-white-100 border-2 w-72 border-[#00334E] px-4 py-4 gap-3 rounded-md"
       >
         <h4
           class="text-2xl text-center"
           :class="{
             'text-white': pageTransaksi,
-            'text-[#EE6F57]': !pageTransaksi,
+            'text-[#00334E]': !pageTransaksi,
           }"
         >
           Transaksi
@@ -21,8 +21,8 @@
 
       <button
         :class="{
-          'bg-[#EE6F57]': !pageTransaksi,
-          'border-[#EE6F57]': pageTransaksi,
+          'bg-[#00334E]': !pageTransaksi,
+          'border-[#00334E]': pageTransaksi,
         }"
         class="inline-block w-72 px-4 py-4 gap-2 rounded-md border-2"
         @click="pageTransaksi = false"
@@ -31,7 +31,7 @@
           class="text-2xl text-center"
           :class="{
             'text-white': !pageTransaksi,
-            'text-[#EE6F67]': pageTransaksi,
+            'text-[#00334E]': pageTransaksi,
           }"
         >
           Poin
@@ -41,7 +41,7 @@
     <!-- Start Riwayat Transaksi -->
     <div v-if="!pageTransaksi">
       <div class="flex flex-col gap-4">
-        <div class="flex flex-col gap-4" v-for="pnt in poin" :key="pnt">
+        <div v-for="pnt in poin" :key="pnt" class="flex flex-col gap-4">
           <div
             class="w-full aspect-[8.06/1] bg-white border-b-[1px] border-black px-5 py-6"
           >
@@ -50,11 +50,22 @@
             </div>
 
             <div class="flex justify-between text-xl py-4">
-              <div class="justify-evenly">
+              <div class="flex flex-col justify-evenly gap-2">
                 <span class="">Transaksi Cashout BRI 10K</span>
+                <button  
+                  v-if="pnt.status === 'Sukses'" 
+                  class="w-44 border border-[#D88203] bg-[#FEE59A] text-[#783A00] px-3 rounded-md">
+                    Dalam Proses
+                </button>
+
+                <button 
+                  v-else 
+                  class="w-24 border border-[#037857] bg-[#CAFAD0] text-[#01504A] px-3 rounded-md">
+                    Sukses
+                </button>
               </div>
 
-              <div class="justify-evenly">
+              <div class="flex flex-col items-end justify-end">
                 <span class=""><span>-</span>{{ pnt.poin }}</span>
               </div>
             </div>
@@ -71,10 +82,21 @@
           <div
             class="w-full aspect-[8.06/1] flex flex-col bg-white gap-4 border-b-[1px] border-black py-6 px-5"
           >
-            <span class="text-lg">1 Mei 2022</span>
+            <span class="text-lg">31 Mei 2022</span>
 
             <div class="flex justify-between text-xl">
-              <span class="">Transaksi Cashout BRI 10K</span>
+              <div  class="flex flex-col items-start justify-start gap-2">
+                <span class="">Transaksi Cashout BRI 10K</span>
+                <button v-if="trk.status === 'Dalam Proses'" class="w-auto border border-[#D88203] bg-[#FEE59A] text-[#783A00] px-3 rounded-md">
+                    Dalam Proses
+                </button>
+
+                <button v-else class="w-auto border border-[#037857] bg-[#CAFAD0] text-[#01504A] px-3 rounded-md">
+                    Sukses
+                </button>
+
+              </div>
+              
 
               <div class="flex flex-col items-end justify-start gap-2">
                 <span>{{ trk.duit }}</span>
@@ -92,6 +114,7 @@
 
 <script>
 export default {
+  name: 'riwayat-user',
   data() {
     return {
       pageTransaksi: true,
@@ -99,45 +122,57 @@ export default {
         {
           duit: 'Rp 10.000,00',
           poin: '10 Poin',
+          status: 'Dalam Proses'
         },
         {
-          duit: 'Rp 10.000,00',
+          duit: 'Rp 16.000,00',
           poin: '10 Poin',
+          status: 'Sukses'
         },
         {
-          duit: 'Rp 10.000,00',
+          duit: 'Rp 11.000,00',
           poin: '10 Poin',
+          status: 'Sukses'
         },
         {
-          duit: 'Rp 10.000,00',
+          duit: 'Rp 13.000,00',
           poin: '10 Poin',
+          status: 'Sukses'
         },
         {
-          duit: 'Rp 10.000,00',
+          duit: 'Rp 17.000,00',
           poin: '10 Poin',
+          status: 'Sukses'
         },
       ],
       poin: [
         {
           poin: '10 poin',
+          status: 'Sukses'
         },
         {
           poin: '10 poin',
+          status: 'Sukses'
         },
         {
           poin: '10 poin',
+          status: 'Sukses'
         },
         {
           poin: '10 poin',
+          status: 'Sukses'
         },
         {
           poin: '10 poin',
+          status: 'Sukses'
         },
         {
           poin: '10 poin',
+          status: 'Sukses'
         },
         {
           poin: '10 poin',
+          status: 'Sukses'
         },
       ],
     }
