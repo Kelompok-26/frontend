@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="w-full rounded-lg rounded-lg bg-white block px-4 py-4">
+    <div class="w-full rounded-lg bg-white block px-4 py-4">
       <div class="flex flex-col gap-2">
         <span class="font-semibold">Jawaban:</span>
         <span>{{ getFAQ[idx].jawaban }}</span>

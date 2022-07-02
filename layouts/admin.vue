@@ -2,13 +2,14 @@
   <div
     class="w-full h-auto mx-auto flex max-w-screen-2xl font-poppins bg-gray-200"
   >
-    <Sidebar />
+    <Sidebar class="" />
     <Nuxt />
   </div>
 </template>
 
 <script>
-export default {}
+import Sidebar from '~/components/Sidebar.vue'
+export default { components: { Sidebar } }
 </script>
 
 <style></style>

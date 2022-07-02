@@ -205,7 +205,7 @@ export default {
   methods: {
     redirectPage(idx, type) {
       this.$router.push({
-        name: 'User-FAQ-detail',
+        name: 'User-faqType',
         params: {
           index: idx,
           faqType: type,

@@ -74,11 +74,8 @@ export default {
       password: '',
     }
   },
-  layout: 'admin',
+  layout: 'empty',
 }
 </script>
 
-<style>
-
-
-</style>
+<style></style>
