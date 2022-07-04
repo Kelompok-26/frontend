@@ -1,9 +1,9 @@
 <!-- Please remove this file from your project -->
 <template>
   <div
+    @click="$emit('toDetail', index)"
     class="flex items-center justify-start ml-2 gap-4"
     ref="scroll.container"
-    v-on:scroll="scrollX"
   >
     <div
       class="w-auto flex flex-col rounded-lg bg-white shadow-lg px-2 py-2 gap-1 cursor-pointer"
@@ -35,6 +35,9 @@ export default {
   name: 'Card',
   components: true,
   props: {
+    index: {
+      type: Number,
+    },
     backgroundImage: {
       type: String,
     },
@@ -52,8 +55,13 @@ export default {
   },
 
   methods: {
-    scrollX(e) {
-      e.scrollLeft += e.deltaY
+    toDetail(idx) {
+      this.$router.push({
+        name: 'User-product-detail-tukar',
+        params: {
+          index: idx,
+        },
+      })
     },
   },
 }

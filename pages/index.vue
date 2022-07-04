@@ -150,6 +150,8 @@
             :productType="paket.productType"
             :poin="paket.poin"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/paketdata__pyAZJU4et.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375508716'"
+            :index="idx"
+            v-on:toDetail="toDetail(idx)"
           />
         </div>
       </div>
@@ -175,8 +177,10 @@
             :key="idx"
             :nominal="paket.nominal"
             :productType="paket.productType"
+            :index="idx"
             :poin="paket.poin"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/pulsa_Dgic1XZnM.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300119237'"
+            v-on:toDetail="toDetail(idx)"
           />
         </div>
       </div>
@@ -203,7 +207,9 @@
             :nominal="paket.nominal"
             :productType="paket.productType"
             :poin="paket.poin"
+            :index="idx"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/cashout_UhMhjSBXXV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375554772'"
+            v-on:toDetail="toDetail(idx)"
           />
         </div>
       </div>
@@ -230,7 +236,9 @@
             :nominal="paket.nominal"
             :productType="paket.productType"
             :poin="paket.poin"
+            :index="idx"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/emoney_LVf6ujW1Q.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375609772'"
+            v-on:toDetail="toDetail(idx)"
           />
         </div>
       </div>
@@ -281,6 +289,15 @@ export default {
         name: 'User-product-productType',
         params: {
           productType: prodType,
+        },
+      })
+    },
+
+    toDetail(idx) {
+      this.$router.push({
+        name: 'User-product-detail-tukar',
+        params: {
+          index: idx,
         },
       })
     },

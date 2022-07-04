@@ -1,6 +1,8 @@
 <template>
-  <div class="w-full h-screen flex mx-auto">
-    <div class="w-1/2 h-full flex items-center justify-center bg-[#F6F5F5]">
+  <div class="w-full min-h-screen h-full flex mx-auto">
+    <div
+      class="w-1/2 min-h-screen h-full flex items-center justify-center bg-[#F6F5F5]"
+    >
       <svg
         width="477"
         height="467"
@@ -958,7 +960,7 @@
       </svg>
     </div>
     <div class="w-1/2 flex items-center justify-center bg-[#145374] text-white">
-      <form action="" class="flex flex-col gap-6 items-start w-96">
+      <form class="flex flex-col gap-6 items-start w-96">
         <h2 class="text-3xl font-semibold">Welcome! <br />Login to continue</h2>
 
         <div class="flex flex-col gap-4 w-full">
@@ -968,7 +970,6 @@
               v-model="email"
               type="text"
               name="Email"
-              id=""
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
             />
           </div>
@@ -976,9 +977,9 @@
           <div class="flex flex-col gap-2">
             <label for="Phonenumber">Phone Number</label>
             <input
+              v-model="phonenumber"
               type="text"
               name="Phonenumber"
-              id=""
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
             />
           </div>
@@ -986,35 +987,36 @@
           <div class="flex flex-col gap-2">
             <label for="Username">Username</label>
             <input
+              v-model="username"
               type="text"
               name="Username"
-              id=""
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
             />
           </div>
           <div class="flex flex-col gap-2">
             <label for="Dateofbirth">Date Of Birth</label>
             <input
+              v-model="dateofbirth"
               type="date"
               name="Dateofbirth"
-              id=""
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
             />
           </div>
           <div class="flex flex-col gap-2">
             <label for="Password">Password</label>
             <input
+              v-model="password"
               type="password"
               name="Password"
-              id=""
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
             />
           </div>
         </div>
         <div
-          class="w-full bg-[#EE6F57] text-white rounded-lg text-white flex items-center justify-center py-2"
+          @click="submit"
+          class="cursor-pointer w-full bg-[#EE6F57] text-white rounded-lg flex items-center justify-center py-2"
         >
-          Login
+          Register
         </div>
 
         <p class="flex items-center justify-center w-full">
@@ -1029,15 +1031,41 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
       email: '',
       username: '',
       password: '',
+      phonenumber: '',
+      dateofbirth: '',
     }
   },
   layout: 'empty',
+
+  methods: {
+    submit() {
+      const form = {
+        email: this.email,
+        username: this.username,
+        password: this.password,
+        phonenumber: this.phonenumber,
+        dateofbirth: this.dateofbirth,
+      }
+      axios
+        .post('https://virtserver.swaggerhub.com/Dzaakk/C-loyal/1.0.0/users', {
+          form,
+        })
+        .then((response) => console.log(response.data))
+
+      this.email = ''
+      this.username = ''
+      this.password = ''
+      this.phonenumber = ''
+      this.dateofbirth = ''
+    },
+  },
 }
 </script>
 
