@@ -1,6 +1,6 @@
 <template>
     <div class="w-full px-10 flex flex-col gap-4">
-        <span class="text-2xl font-bold">Delete User Poin</span>
+        <span class="text-2xl font-bold">Delete Pulsa</span>
         
         <div class="flex items-center justify-end gap-5">
             <p class="text-[#00334E]">Beranda</p>
@@ -20,84 +20,15 @@
         <form action="" class="w-full px-10 flex flex-col bg-white border-t-[10px] border-[#145374] rounded-md">
             <div class="flex flex-col w-1/2 py-10 gap-6" >
                 <div class="flex justify-between items-center">
-                    <label class="text-black">Provider</label> 
-
-                    <!-- Provider -->
-                    <div class="flex flex-col">
-
-                        <button
-                            class="flex justify-between items-start w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
-                            @click="isVisible = !isVisible"
-                        >
-                            <p>pilih provider</p> 
-
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill fill-gray-500" viewBox="0 0 16 16">
-                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                            </svg>
-                        </button>
-
-                        <div 
-                            v-if="isVisible"
-                            class="z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-96 dark:bg-gray-700"
-                        >
-                            <ul class="py-1 text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">TELKOMSEL</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">TRI</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">INDOSAT</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">XL</a>
-                            </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                <div class="flex justify-between items-center">
-                    <label class="text-black">Paket Data</label>
-                    <div class="flex flex-col">
-
-                        <button
-                            class="flex justify-between items-start w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
-                            @click="isVisible1=true"
-                        >
-                            <p>pilih paket data</p> 
-
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill fill-gray-500" viewBox="0 0 16 16">
-                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                            </svg>
-                        </button>
-
-                        <div 
-                            v-if="isVisible1"
-                            class="mt-10 z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-96 dark:bg-gray-700"
-                        >
-                            <ul class="py-1 text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                            <li>
-                                <a href="" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">1 GB</a>
-                            </li>
-                            <li>
-                                <a href="" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2 GB</a>
-                            </li>
-                            <li>
-                                <a href="" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">5 GB</a>
-                            </li>
-                            <li>
-                                <a href="" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">10 GB</a>
-                            </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <label class="text-black">ID E-Money</label>
+                    <input
+                    type="text"
+                    class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
+                    />
                 </div>
 
                 <div class="flex justify-between items-center">
-                    <label class="text-black">Harga</label>
+                    <label class="text-black">Nominal</label>
                     <input
                     type="text"
                     class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
