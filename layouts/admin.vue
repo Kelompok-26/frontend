@@ -9,7 +9,10 @@
 
 <script>
 import Sidebar from '~/components/Sidebar.vue'
-export default { components: { Sidebar } }
+export default {
+  // middleware: ['admin'],
+  components: { Sidebar },
+}
 </script>
 
 <style></style>

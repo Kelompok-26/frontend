@@ -27,6 +27,8 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
+  ssr: true,
+  target: 'server',
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -39,6 +41,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'cookie-universal-nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',

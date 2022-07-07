@@ -968,12 +968,15 @@
         <div class="flex flex-col w-96">
           <label class="text-white">Password</label>
           <input
-            type="text"
+            type="password"
             class="bg-gray-200 rounded-lg w-full py-2 px-4 text-gray-700"
           />
         </div>
 
-        <button class="text-slate-100 bg-[#EE6F57] w-96 py-2 px-4 rounded-md">
+        <button
+          class="text-slate-100 bg-[#EE6F57] w-96 py-2 px-4 rounded-md"
+          @click="auth"
+        >
           Login
         </button>
 
@@ -991,5 +994,32 @@
 <script>
 export default {
   layout: 'empty',
+  data() {
+    return {
+      phonenumber: '',
+      password: '',
+    }
+  },
+
+  methods: {
+    auth() {
+      this.$store.dispatch('userAuth/fetchLogin', {
+        phonenumber: this.phonenumber,
+        password: this.password,
+      })
+    },
+
+    log() {
+      const login = {
+        phonenumber: this.phonenumber,
+        password: this.password,
+      }
+      this.$axios
+        .post('https://virtserver.swaggerhub.com/Dzaakk/C-loyal/1.0.0/login', {
+          login,
+        })
+        .then((res) => console.log(res))
+    },
+  },
 }
 </script>
