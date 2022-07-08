@@ -1,24 +1,19 @@
 <template>
   <div class="w-full px-10 flex flex-col gap-4">
-    <span class="text-2xl font-bold">Input Pulsa</span>
-
-    <div class="flex items-center justify-end gap-5">
-      <p class="text-[#00334E]">Beranda</p>
-      <svg
-        class="bi bi-chevron-right"
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        viewBox="0 0 16 16"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+    <div class="flex items-center gap-6 mt-8">
+      <svg class="cursor-pointer" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path 
+          fill-rule="evenodd" 
+          clip-rule="evenodd" 
+          d="M20 40C25.3043 40 30.3914 37.8929 34.1421 34.1421C37.8929 30.3914 40 25.3043 40 20C40 14.6957 37.8929 9.60859 34.1421 5.85786C30.3914 2.10714 25.3043 0 20 0C14.6957 0 9.60859 2.10714 5.85786 5.85786C2.10714 9.60859 0 14.6957 0 20C0 25.3043 2.10714 30.3914 5.85786 34.1421C9.60859 37.8929 14.6957 40 20 40ZM21.7675 14.2675C22.2229 13.796 22.4749 13.1645 22.4692 12.509C22.4635 11.8535 22.2006 11.2265 21.737 10.763C21.2735 10.2994 20.6465 10.0365 19.991 10.0308C19.3355 10.0251 18.704 10.2771 18.2325 10.7325L10.7325 18.2325C10.2638 18.7013 10.0005 19.3371 10.0005 20C10.0005 20.6629 10.2638 21.2987 10.7325 21.7675L18.2325 29.2675C18.704 29.7229 19.3355 29.9749 19.991 29.9692C20.6465 29.9635 21.2735 29.7006 21.737 29.237C22.2006 28.7735 22.4635 28.1465 22.4692 27.491C22.4749 26.8355 22.2229 26.204 21.7675 25.7325L18.535 22.5H27.5C28.163 22.5 28.7989 22.2366 29.2678 21.7678C29.7366 21.2989 30 20.663 30 20C30 19.337 29.7366 18.7011 29.2678 18.2322C28.7989 17.7634 28.163 17.5 27.5 17.5H18.535L21.7675 14.2675Z" 
+          fill="black"
         />
       </svg>
-      <p class="text-[#00334E]">Users</p>
+ 
+      <span class="text-2xl font-bold">Input Pulsa</span>
+    </div>
 
+    <div class="flex items-center justify-end gap-5">
       <button
         class="bg-[#EE6F57] flex items-center gap-2 text-white px-4 py-3 rounded-md"
       >
@@ -42,17 +37,18 @@
     <div
       class="w-full px-10 flex flex-col bg-white border-t-[10px] border-[#145374] rounded-md"
     >
+    <form action="">
       <div class="flex flex-col w-1/2 py-10 gap-6">
         <div class="flex justify-between items-center">
           <label class="text-black">Provider</label>
 
           <!-- Provider -->
           <div class="flex flex-col">
-            <button
-              class="flex justify-between items-start w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
-              @click="isVisible = !isVisible"
+            <div
+              class="flex justify-between items-start w-96 border border-gray-400 rounded-md py-2 px-4 text-black cursor-pointer"
+              @click="isVisible = true"
             >
-              <p>pilih provider</p>
+              <p>{{pilih}}</p>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -66,44 +62,27 @@
                   d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
                 />
               </svg>
-            </button>
+            </div>
 
             <div
               v-if="isVisible"
               class="mt-11 z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-96 dark:bg-gray-700"
             >
               <ul
+                v-for="(value,idx) in provider" :key="idx"
                 class="py-1 text-gray-700 dark:text-gray-200"
                 aria-labelledby="dropdownDefault"
               >
-                <li>
+                <li 
+                  @click="choose(idx)"
+                >
                   <a
                     href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >TELKOMSEL</a
+                    >{{value.name}}</a
                   >
                 </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >TRI</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >INDOSAT</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >XL</a
-                  >
-                </li>
+                
               </ul>
             </div>
           </div>
@@ -111,12 +90,14 @@
 
         <div class="flex justify-between items-center">
           <label class="text-black">Pulsa</label>
+          
+          <!-- Pulsa -->
           <div class="flex flex-col">
-            <button
-              class="flex justify-between items-start w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
-              @click="isVisible1 = !isVisible1"
+            <div
+              class="flex justify-between items-start w-96 border border-gray-400 rounded-md py-2 px-4 text-black cursor-pointer"
+              @click="isVisible1 = true"
             >
-              <p>pilih pulsa</p>
+              <p>{{pilih1}}</p>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -130,56 +111,24 @@
                   d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
                 />
               </svg>
-            </button>
+            </div>
 
             <div
               v-if="isVisible1"
               class="mt-11 z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-96 dark:bg-gray-700"
             >
               <ul
+                v-for="(value,idx1) in pulsa" :key="idx1"
                 class="py-1 text-gray-700 dark:text-gray-200"
                 aria-labelledby="dropdownDefault"
               >
-                <li>
+                <li 
+                  @click="choosePulsa(idx1)"
+                >
                   <a
-                    href=""
+                    href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Rp 10.000</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href=""
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Rp 20.000</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href=""
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Rp 25.000</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href=""
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Rp 50.000</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href=""
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Rp 100.000</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href=""
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Rp 200.000</a
+                    >{{value.nominal}}</a
                   >
                 </li>
               </ul>
@@ -215,24 +164,57 @@
           </button>
         </div>
       </div>
+      </form>
       <!-- End of Button -->
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   layout: 'admin',
   data() {
     return {
       isVisible: false,
       isVisible1: false,
+      pilih: 'TELKOMSEL',
+      pilih1: 'Rp 10.000',
+      index: null,
+      index1: null,
+      provider: [{name: 'TELKOMSEL'}, {name: 'TRI'}, {name: 'INDOSAT'}, {name: 'XL'}],
+      pulsa: [{nominal: 'Rp 10.000'}, {nominal: 'Rp 15.000'}, {nominal: 'Rp 50.000'}, {nominal: 'Rp 100.000'}, {nominal: 'Rp 200.000'}],
+      harga: '',
+      stok: '',
     }
   },
-  methods: {
-    toggleVisbility() {
-      // this.isVisible = !this.isVisible;
+  watch:{
+    index(){
+      this.pilih = this.provider[this.index].name;
     },
+    index1(){
+      this.pilih1 = this.pulsa[this.index1].nominal;
+    },
+  },
+  methods: {
+    async addStock(){
+      const api = await axios.post('https://virtserver.swaggerhub.com/Dzaakk/C-loyal/1.0.0/products', {
+        provider: this.provider,
+        pulsa: this.pulsa,
+        harga: this.harga,
+        stok: this.stok
+      });
+      console.warn("function called", this.provider, this.paketData, this.harga, this.stok);
+      console.warn(api);
+    },
+  choose(idx){
+    this.index=idx;
+    this.isVisible =false
+  },
+  choosePulsa(idx1){
+    this.index1=idx1;
+    this.isVisible1 =false
+  }
   },
 }
 </script>

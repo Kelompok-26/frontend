@@ -3,22 +3,6 @@
     <span class="text-2xl font-bold">Input Cashout</span>
 
     <div class="flex items-center justify-end gap-5">
-      <p class="text-[#00334E]">Beranda</p>
-      <svg
-        class="bi bi-chevron-right"
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        viewBox="0 0 16 16"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-        />
-      </svg>
-      <p class="text-[#00334E]">Cashout</p>
-
       <button
         class="bg-[#EE6F57] flex items-center gap-2 text-white px-4 py-3 rounded-md"
       >
