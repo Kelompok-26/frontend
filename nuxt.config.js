@@ -71,4 +71,11 @@ export default {
       },
     },
   },
+
+  storybook: {
+    stories: [],
+    webpackFinal(config) {
+      return config
+    },
+  },
 }
