@@ -132,8 +132,11 @@
           fill="black"
         />
       </svg>
-
-      <p class="font-bold cursor-pointer" @click="openProfile = !openProfile">
+      <p
+        v-if="getisAuth"
+        class="font-bold cursor-pointer"
+        @click="openProfile = !openProfile"
+      >
         Username
       </p>
       <div
@@ -191,6 +194,12 @@ export default {
     return {
       openProfile: false,
     }
+  },
+
+  computed: {
+    getisAuth() {
+      return this.$store.state.userAuth.isAuth
+    },
   },
 }
 </script>

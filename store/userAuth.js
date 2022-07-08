@@ -1,10 +1,15 @@
 const state = () => ({
   token: null,
+  isAuth: false,
 })
 
 const mutations = {
   setToken(state, param) {
     state.token = param
+  },
+
+  setisAuth(state, param) {
+    state.isAuth = param
   },
 }
 
@@ -22,9 +27,17 @@ const actions = {
       }
     )
 
+    this.$cookies.set('isAuth', true, {
+      path: '/',
+    })
+
+    // localStorage.setItem('isAuth', true)
+
     this.$cookies.set('token', response.data.token, {
       path: '/',
     })
+
+    store.commit('setisAuth', true)
     store.commit('setToken', response.data.token)
 
     this.$router.push('/')

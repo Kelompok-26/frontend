@@ -1,9 +1,6 @@
 <template>
   <!-- Start Content -->
   <div class="w-full px-10 flex flex-col gap-6">
-    <div v-for="(value, idx) in provider" :key="idx">
-      {{ value.name }}
-    </div>
     <div
       :class="{
         '-translate-y-1/2': banner,
