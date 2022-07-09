@@ -127,8 +127,14 @@
             </svg>
           </div>
           <div v-if="isOpening" class="flex flex-col gap-6">
-            <p class="pl-14">Pulsa</p>
-            <p class="pl-14">Paket Data</p>
+            <p
+              class="pl-14"
+              v-for="(prod, idx) in product"
+              :key="idx"
+              @click="toProduct(prod.name)"
+            >
+              {{ prod.name }}
+            </p>
           </div>
         </div>
 
@@ -221,9 +227,26 @@ export default {
   data() {
     return {
       isOpening: false,
+      product: [
+        { name: 'Paket Data' },
+        { name: 'Pulsa' },
+        { name: 'Cashout' },
+        { name: 'E-Money' },
+      ],
     }
   },
   name: 'SideBar',
   components: true,
+
+  methods: {
+    toProduct(nameProduct) {
+      this.$router.push({
+        name: 'admin-typeProduct',
+        params: {
+          typeProduct: nameProduct,
+        },
+      })
+    },
+  },
 }
 </script>

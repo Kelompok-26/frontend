@@ -12,6 +12,8 @@
       }"
       class="w-auto fixed h-auto left-1/2 top-1/2 -translate-x-1/2 duration-300 delay-75 ease-in-out"
     >
+      <p class="text-white">{{ getLevel }}</p>
+
       <div
         class="flex flex-col items-center justify-center gap-4 w-auto py-10 px-10 rounded-md bg-white"
       >
@@ -9771,6 +9773,10 @@ export default {
   },
 
   computed: {
+    getLevel() {
+      return this.$store.state.adminAuth.level
+    },
+
     paketData() {
       return this.$store.state.product.paketData
     },

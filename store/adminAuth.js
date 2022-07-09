@@ -1,10 +1,15 @@
 const state = () => ({
   token: null,
+  level: '0',
 })
 
 const mutations = {
   setToken(state, param) {
     state.token = param
+  },
+
+  setLevel(state, param) {
+    state.level = param
   },
 }
 
@@ -15,17 +20,21 @@ const actions = {
 
   async fetchLogin(store, param) {
     const response = await this.$axios.post(
-      'https://virtserver.swaggerhub.com/Dzaakk/C-loyal/1.0.0/login',
+      'ec2-54-160-45-255.compute-1.amazonaws.com:8080/admin/login',
       {
-        phonenumber: param.phonenumber,
+        email: param.email,
         password: param.password,
       }
     )
 
-    this.$cookies.set('token', response.data.token, {
+    if (!response.data.admin === null) {
+      store.commit('setLevel', 2)
+    }
+
+    this.$cookies.set('token', response.data.admin, {
       path: '/admin/',
     })
-    store.commit('setToken', response.data.token)
+    store.commit('setToken', response.data.admin)
 
     this.$router.push('/admin/dashboard')
   },

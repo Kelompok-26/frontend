@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-screen mx-auto flex flex-row max-w-screen-2xl bg-[#145374]"
+    class="w-full min-h-screen h-full fixed mx-auto flex flex-row max-w-screen-2xl bg-[#145374]"
   >
     <!-- Start Content -->
     <div class="h-full w-1/2 flex items-center justify-center bg-[#F6F5F5]">
@@ -955,6 +955,7 @@
             >Welcome! <br />
             LogIn to continue</span
           >
+          <span>{{ getLevel }}</span>
         </div>
 
         <div class="flex flex-col w-96">
@@ -996,26 +997,31 @@ export default {
   layout: 'empty',
   data() {
     return {
-      phonenumber: '',
+      email: '',
       password: '',
     }
   },
 
+  computed: {
+    getLevel() {
+      return this.$store.state.adminAuth.level
+    },
+  },
   methods: {
     auth() {
       this.$store.dispatch('userAuth/fetchLogin', {
-        phonenumber: this.phonenumber,
+        email: this.email,
         password: this.password,
       })
     },
 
     log() {
       const login = {
-        phonenumber: this.phonenumber,
+        email: this.email,
         password: this.password,
       }
       this.$axios
-        .post('https://virtserver.swaggerhub.com/Dzaakk/C-loyal/1.0.0/login', {
+        .post('ec2-54-160-45-255.compute-1.amazonaws.com:8080/user/login', {
           login,
         })
         .then((res) => console.log(res))

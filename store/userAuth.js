@@ -1,6 +1,7 @@
 const state = () => ({
   token: null,
   isAuth: false,
+  level: '0',
 })
 
 const mutations = {
@@ -11,6 +12,10 @@ const mutations = {
   setisAuth(state, param) {
     state.isAuth = param
   },
+
+  setLevel(state, param) {
+    state.level = param
+  },
 }
 
 const actions = {
@@ -20,12 +25,14 @@ const actions = {
 
   async fetchLogin(store, param) {
     const response = await this.$axios.post(
-      'https://virtserver.swaggerhub.com/Dzaakk/C-loyal/1.0.0/login',
+      'ec2-54-160-45-255.compute-1.amazonaws.com:8080/user/login',
       {
-        phonenumber: param.phonenumber,
+        email: param.email,
         password: param.password,
       }
     )
+
+    store.commit('setLevel', '1')
 
     this.$cookies.set('isAuth', true, {
       path: '/',
@@ -33,12 +40,12 @@ const actions = {
 
     // localStorage.setItem('isAuth', true)
 
-    this.$cookies.set('token', response.data.token, {
+    this.$cookies.set('token', response.data.User, {
       path: '/',
     })
 
     store.commit('setisAuth', true)
-    store.commit('setToken', response.data.token)
+    store.commit('setToken', response.data.User)
 
     this.$router.push('/')
   },
