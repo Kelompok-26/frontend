@@ -961,6 +961,7 @@
         <div class="flex flex-col w-96">
           <label class="text-white">Phone Number or Email</label>
           <input
+            v-model="email"
             type="text"
             class="bg-gray-200 rounded-lg w-full py-2 px-4 text-gray-700"
           />
@@ -969,6 +970,7 @@
         <div class="flex flex-col w-96">
           <label class="text-white">Password</label>
           <input
+            v-model="password"
             type="password"
             class="bg-gray-200 rounded-lg w-full py-2 px-4 text-gray-700"
           />
@@ -976,7 +978,7 @@
 
         <button
           class="text-slate-100 bg-[#EE6F57] w-96 py-2 px-4 rounded-md"
-          @click="auth"
+          @click="log()"
         >
           Login
         </button>
@@ -1016,15 +1018,28 @@ export default {
     },
 
     log() {
-      const login = {
+      const axios = require('axios')
+      const login = JSON.stringify({
         email: this.email,
         password: this.password,
+      })
+
+      const config = {
+        method: 'post',
+        url: 'ec2-54-160-45-255.compute-1.amazonaws.com:8080/user/login',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: login,
       }
-      this.$axios
-        .post('ec2-54-160-45-255.compute-1.amazonaws.com:8080/user/login', {
-          login,
+
+      axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data))
         })
-        .then((res) => console.log(res))
+        .catch(function (error) {
+          console.log(error)
+        })
     },
   },
 }
