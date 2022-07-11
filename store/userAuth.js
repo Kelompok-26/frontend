@@ -2,6 +2,7 @@ const state = () => ({
   token: null,
   isAuth: false,
   level: '0',
+  sakit: '',
 })
 
 const mutations = {
@@ -16,6 +17,10 @@ const mutations = {
   setLevel(state, param) {
     state.level = param
   },
+
+  setPenyakit(state, param) {
+    state.sakit = param
+  },
 }
 
 const actions = {
@@ -25,27 +30,25 @@ const actions = {
 
   async fetchLogin(store, param) {
     const response = await this.$axios.post(
-      'ec2-54-160-45-255.compute-1.amazonaws.com:8080/user/login',
+      'https://api.capstone.thisham.my.id/login',
       {
         email: param.email,
         password: param.password,
       }
     )
+    const token = response.data.data.token
 
-    store.commit('setLevel', '1')
-
-    this.$cookies.set('isAuth', true, {
-      path: '/',
-    })
+    console.log(token)
+    // store.commit('setLevel', '1')
 
     // localStorage.setItem('isAuth', true)
 
-    this.$cookies.set('token', response.data.User, {
+    this.$cookies.set('token', response.data.data.token, {
       path: '/',
     })
 
     store.commit('setisAuth', true)
-    store.commit('setToken', response.data.User)
+    store.commit('setToken', response.data.data.token)
 
     this.$router.push('/')
   },
