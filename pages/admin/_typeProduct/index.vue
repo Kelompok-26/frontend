@@ -100,6 +100,7 @@ export default {
   layout: 'admin',
   data() {
     return {
+      role: null,
       product: '',
     }
   },

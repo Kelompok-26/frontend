@@ -955,7 +955,7 @@
             >Welcome! <br />
             LogIn to continue</span
           >
-          <span>{{ getLevel }}</span>
+          <span>{{ getSakit }}</span>
         </div>
 
         <div class="flex flex-col w-96">
@@ -978,7 +978,7 @@
 
         <button
           class="text-slate-100 bg-[#EE6F57] w-96 py-2 px-4 rounded-md"
-          @click="log()"
+          @click="auth"
         >
           Login
         </button>
@@ -1001,45 +1001,54 @@ export default {
     return {
       email: '',
       password: '',
+      code: '',
     }
   },
 
   computed: {
+    getSakit() {
+      return this.$store.state.userAuth.sakit
+    },
     getLevel() {
       return this.$store.state.adminAuth.level
     },
   },
   methods: {
     auth() {
-      this.$store.dispatch('userAuth/fetchLogin', {
-        email: this.email,
-        password: this.password,
-      })
-    },
+      // const axios = require('axios')
+      // this.$store.dispatch('userAuth/fetchLogin', {
+      //   email: this.email,
+      //   password: this.password,
+      // })
 
-    log() {
-      const axios = require('axios')
-      const login = JSON.stringify({
-        email: this.email,
-        password: this.password,
-      })
+      // const login = JSON.stringify({
+      //   email: this.email,
+      //   password: this.password,
+      // })
 
-      const config = {
-        method: 'post',
-        url: 'ec2-54-160-45-255.compute-1.amazonaws.com:8080/user/login',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        data: login,
-      }
+      // const config = {
+      //   method: 'post',
+      //   url: 'ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/admin/login',
+      //   data: login,
+      // }
 
-      axios(config)
+      this.$axios
+        .post('ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/admin/login', {
+          email: this.email,
+          password: this.password,
+        })
         .then(function (response) {
           console.log(JSON.stringify(response.data))
         })
         .catch(function (error) {
           console.log(error)
         })
+    },
+
+    log() {
+      this.$store.dispatch('userAuth/fetchCode', {
+        code: this.code,
+      })
     },
   },
 }

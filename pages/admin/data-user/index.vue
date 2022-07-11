@@ -91,7 +91,7 @@
     <div
       class="w-full px-10 flex flex-col bg-white border-t-[10px] border-[#145374] rounded-md"
     >
-      pagination
+      <Pagination />
     </div>
     <!-- End of Pagination -->
   </div>

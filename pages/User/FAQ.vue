@@ -117,15 +117,15 @@ export default {
 
   computed: {
     umum() {
-      return this.$store.state.faq.umum
+      return this.$store.state.FQ.umum
     },
 
     akun() {
-      return this.$store.state.faq.akun
+      return this.$store.state.FQ.akun
     },
 
     transaksi() {
-      return this.$store.state.faq.transaksi
+      return this.$store.state.FQ.transaksi
     },
   },
   methods: {
