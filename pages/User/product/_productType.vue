@@ -2,17 +2,21 @@
   <div class="w-full flex flex-col px-10 rounded-md gap-10">
     <div class="flex flex-col gap-6">
       <div class="flex justify-center items-center">
-        <p class="text-3xl font-bold">Rekomendasi Paket Data</p>
+        <p class="text-3xl font-bold">
+          Rekomendasi <span>{{ product }}</span>
+        </p>
       </div>
 
       <div class="flex flex-wrap gap-x-4 gap-y-10 items-center">
         <Card
-          v-for="prd in getProduct"
-          :key="prd"
-          :nominal="prd.nominal"
-          :productType="prd.productType"
-          :poin="prd.poin"
+          v-for="(paket, idx) in getProduct"
+          :key="idx"
+          :nominal="paket.product_name"
+          :productType="paket.type_product"
+          :index="idx"
+          :poin="paket.point"
           :backgroundImage="'https://ik.imagekit.io/drigoalexander/paketdata__pyAZJU4et.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375508716'"
+          v-on:toDetail="toDetail(idx)"
         />
       </div>
     </div>
@@ -37,15 +41,21 @@ export default {
   },
   computed: {
     getProduct() {
-      if (this.product === 'paketData')
-        return this.$store.state.product.paketData
-      else if (this.product === 'pulsa') return this.$store.state.product.pulsa
-      else if (this.product === 'cashout')
-        return this.$store.state.product.cashout
-      else return this.$store.state.product.emoney
+      return this.$store.state.product.product.filter((el) => {
+        return el.type_product === `${this.product}`
+      })
     },
   },
   methods: {
+    toDetail(idx) {
+      this.$router.push({
+        name: 'User-product-detail-tukar',
+        params: {
+          index: idx,
+        },
+      })
+    },
+
     redirectBenefit(objBenefit) {
       this.$router.push({
         name: 'User-produtType',

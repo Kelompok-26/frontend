@@ -9736,7 +9736,7 @@
             v-for="(paket, idx) in emoney"
             :key="idx"
             :nominal="paket.product_name"
-            :productType="'E-Money'"
+            :productType="paket.type_product"
             :index="idx"
             :poin="paket.point"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/emoney_LVf6ujW1Q.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375609772'"
@@ -9764,10 +9764,10 @@ export default {
   data() {
     return {
       banner: false,
-      paketDataParam: 'paketData',
-      pulsaParam: 'pulsa',
-      cashoutParam: 'cashout',
-      emoneyParam: 'emoney',
+      paketDataParam: 'Paket Data',
+      pulsaParam: 'Pulsa',
+      cashoutParam: 'Cashout',
+      emoneyParam: 'E-Money',
     }
   },
 
