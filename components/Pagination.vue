@@ -3,13 +3,13 @@
     class="flex flex-col gap-20 bg-blue-500 w-full h-screen px-20 mx-auto py-10"
   >
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-left text-black">
+      <table class="w-full text-left text-black min-h-fit">
         <thead class="uppercase bg-[#EDEDED]">
           <tr>
-            <th scope="col" class="px-6 py-6">No</th>
-            <th scope="col" class="px-6 py-6">ID Cashout</th>
+            <th scope="col" class="px-6 py-6">ID</th>
             <th scope="col" class="px-6 py-6">Nominal</th>
             <th scope="col" class="px-6 py-6">Jumlah</th>
+            <th scope="col" class="px-6 py-6">Point</th>
             <th scope="col" class="px-6 py-6"></th>
           </tr>
         </thead>
@@ -232,7 +232,7 @@ export default {
       if (this.currentPage === 1) {
         return this.temp.slice(0, 7)
       } else {
-        return this.temp.slice(this.currentPage + 7, this.currentPage * 7)
+        return this.temp.slice((this.currentPage - 1) * 7, this.currentPage * 7)
       }
     },
     getTotalPage() {
@@ -243,7 +243,8 @@ export default {
   methods: {
     upNumber() {
       const banyakData = this.data.length
-      if (this.currentPage === banyakData / this.perPage) {
+      const maxPage = banyakData / this.perPage
+      if (this.currentPage >= maxPage) {
         return
       } else {
         this.currentPage += 1

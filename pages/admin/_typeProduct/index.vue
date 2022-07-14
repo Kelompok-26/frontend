@@ -26,7 +26,8 @@
         />
       </div>
 
-      <button
+      <button @click="inputContext
+      "
         class="bg-[#ee6f57] flex items-center gap-2 text-white px-5 py-3 rounded-md"
       >
         <svg
@@ -100,8 +101,18 @@ export default {
   layout: 'admin',
   data() {
     return {
-      role: null,
       product: '',
+    }
+  },
+
+  methods: {
+    inputContext(){
+      this.$router.push({
+        name: 'admin-typeProduct-input',
+        params: {
+          typeProduct: this.product
+        }
+      })
     }
   },
   created() {

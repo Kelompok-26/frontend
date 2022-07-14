@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex flex-col gap-6 mx-auto px-6 pt-8">
+  <div class="w-full h-full flex flex-col gap-6 mx-auto px-6 py-8">
     <div class="w-full flex justify-end">
       <svg
         class="cursor-pointer"

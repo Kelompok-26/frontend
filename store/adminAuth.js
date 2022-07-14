@@ -1,6 +1,8 @@
 const state = () => ({
   token: null,
+  isAuth: false,
   level: '0',
+  sakit: '',
 })
 
 const mutations = {
@@ -8,8 +10,16 @@ const mutations = {
     state.token = param
   },
 
+  setisAuth(state, param) {
+    state.isAuth = param
+  },
+
   setLevel(state, param) {
     state.level = param
+  },
+
+  setPenyakit(state, param) {
+    state.sakit = param
   },
 }
 
@@ -20,25 +30,36 @@ const actions = {
 
   async fetchLogin(store, param) {
     const response = await this.$axios.post(
-      'ec2-54-160-45-255.compute-1.amazonaws.com:8080/admin/login',
+      'http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/admin/login',
       {
         email: param.email,
         password: param.password,
       }
     )
 
-    if (!response.data.admin === null) {
-      store.commit('setLevel', 2)
+    if (response.data.Admin) {
+      this.$cookies.set('token', response.data.Admin, {
+        path: '/',
+      })
+
+      this.$cookies.set('role', 'Admin', {
+        path: '/',
+      })
     }
 
-    this.$cookies.set('token', response.data.admin, {
-      path: '/admin/',
-    })
-    store.commit('setToken', response.data.admin)
+    store.commit('setisAuth', true)
+    store.commit('setToken', response.data.Admin)
 
     this.$router.push('/admin/dashboard')
   },
-  async fetchLogout(store) {},
+  adminLogout(store) {
+    this.$cookies.remove('token')
+    this.$cookies.remove('role')
+    this.$router.push('/admin/')
+
+    store.commit('setToken', null)
+    store.commit('setToken', null)
+  },
 }
 
 export { state, mutations, actions }

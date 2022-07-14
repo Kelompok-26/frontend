@@ -1,9 +1,9 @@
 <!-- Please remove this file from your project -->
 <template>
   <div
-    class="flex flex-col items-start px-10 pt-6 gap-6 h-[130vh] w-1/4 shadow-xl bg-white"
+    class="flex flex-col items-start px-10 pt-6 gap-6 min-h-screen h-full w-1/4 shadow-xl"
   >
-    <div class="fixed">
+    <div class="fixed min-h-screen h-full bg-white px-10 pt-6 left-0 top-0">
       <h1 class="text-[#00334E] font-extrabold text-2xl">C-Loyal</h1>
 
       <div class="flex flex-col gap-4 w-full">
@@ -191,7 +191,7 @@
           </svg>
         </div>
 
-        <div class="w-auto p-1 shadow-sm rounded-lg">
+        <div @click="logout" class="w-auto p-1 shadow-sm rounded-lg">
           <svg
             width="20"
             height="20"
@@ -223,6 +223,7 @@
 </template>
 
 <script>
+// import jwt_decode from 'jwt-decode'
 export default {
   data() {
     return {
@@ -235,16 +236,29 @@ export default {
       ],
     }
   },
+
+  computed: {
+    // getToken() {
+    //   // return jwt_decode(this.$store.state.authAdmin.token)
+    // },
+  },
   name: 'SideBar',
   components: true,
 
   methods: {
+    logout() {
+      this.$store.dispatch('adminAuth/adminLogout')
+    },
     toProduct(nameProduct) {
       this.$router.push({
         name: 'admin-typeProduct',
         params: {
           typeProduct: nameProduct,
         },
+      })
+
+      this.$store.dispatch('adminProduct/fetchProduct', {
+        typeProduct: nameProduct,
       })
     },
   },

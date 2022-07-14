@@ -10,7 +10,7 @@
 <script>
 import Sidebar from '~/components/Sidebar.vue'
 export default {
-  // middleware: ['admin'],
+  middleware: ['admin', 'authAdmin'],
   components: { Sidebar },
 }
 </script>

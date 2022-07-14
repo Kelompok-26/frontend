@@ -30,27 +30,31 @@ const actions = {
 
   async fetchLogin(store, param) {
     const response = await this.$axios.post(
-      'https://api.capstone.thisham.my.id/login',
+      'http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/user/login',
       {
         email: param.email,
         password: param.password,
       }
     )
-    const token = response.data.data.token
 
-    console.log(token)
+    console.log(response.data)
     // store.commit('setLevel', '1')
 
     // localStorage.setItem('isAuth', true)
+    // if (response.data.Admin) {
+    //   this.$cookies.set('token', response.data.User, {
+    //     path: '/',
+    //   })
 
-    this.$cookies.set('token', response.data.data.token, {
-      path: '/',
-    })
+    //   this.$cookies.set('role', 'User', {
+    //     path: '/',
+    //   })
+    // }
 
-    store.commit('setisAuth', true)
-    store.commit('setToken', response.data.data.token)
+    // store.commit('setisAuth', true)
+    // store.commit('setToken', response.data.data.token)
 
-    this.$router.push('/')
+    // this.$router.push('/')
   },
   async fetchLogout(store) {},
 }

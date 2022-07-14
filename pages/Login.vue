@@ -1015,34 +1015,10 @@ export default {
   },
   methods: {
     auth() {
-      // const axios = require('axios')
-      // this.$store.dispatch('userAuth/fetchLogin', {
-      //   email: this.email,
-      //   password: this.password,
-      // })
-
-      // const login = JSON.stringify({
-      //   email: this.email,
-      //   password: this.password,
-      // })
-
-      // const config = {
-      //   method: 'post',
-      //   url: 'ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/admin/login',
-      //   data: login,
-      // }
-
-      this.$axios
-        .post('ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/admin/login', {
-          email: this.email,
-          password: this.password,
-        })
-        .then(function (response) {
-          console.log(JSON.stringify(response.data))
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+      this.$store.dispatch('userAuth/fetchLogin', {
+        email: this.email,
+        password: this.password,
+      })
     },
 
     log() {

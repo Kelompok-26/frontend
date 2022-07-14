@@ -12,7 +12,7 @@
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
 export default {
-  // middleware: ['user'],
+  middleware: ['user', 'authUser'],
   components: { Navbar, Footer },
 }
 </script>
