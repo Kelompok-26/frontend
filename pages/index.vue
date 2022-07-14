@@ -12,8 +12,6 @@
       }"
       class="w-auto fixed h-auto left-1/2 top-1/2 -translate-x-1/2 duration-300 delay-75 ease-in-out"
     >
-      <p class="text-white">{{ getLevel }}</p>
-
       <div
         class="flex flex-col items-center justify-center gap-4 w-auto py-10 px-10 rounded-md bg-white"
       >
@@ -9515,13 +9513,12 @@
           Fast and simple <br />digital payment <br />
           solution
         </h3>
-        <NuxtLink to="#product">
-          <button
-            class="w-auto px-4 aspect-[3/1] rounded-md border-2 border-black"
-          >
-            Explore Now!
-          </button>
-        </NuxtLink>
+
+        <button
+          class="w-auto px-4 aspect-[3/1] rounded-md border-2 border-black"
+        >
+          <a href="#product">Explore Now</a>
+        </button>
       </div>
     </div>
     <div class="flex items-center justify-evenly gap-6">
@@ -9563,7 +9560,9 @@
 
         <div class="flex flex-col items-center justify-center gap-2">
           <p class="font-light text-2xl">POIN KAMU</p>
-          <h4 class="text-4xl font-bold">200 Poin</h4>
+          <h4 class="text-4xl font-bold">
+            <span>{{ getUser.point }}</span> Poin
+          </h4>
         </div>
       </div>
       <div
@@ -9773,8 +9772,11 @@ export default {
   },
 
   computed: {
+    getUser() {
+      return this.$store.state.userAuth.User
+    },
     getLevel() {
-      return this.$store.state.adminAuth.level
+      return this.$store.state.userAuth.id
     },
 
     paketData() {
@@ -9810,7 +9812,16 @@ export default {
       })
     },
   },
-
+  created() {
+    if (this.$cookies.get('token')) {
+      const tokens = this.$store.state.userAuth.token
+      const ids = this.$store.state.userAuth.id
+      this.$store.dispatch('userAuth/fetchUser', {
+        token: tokens,
+        id: ids,
+      })
+    }
+  },
   components: { Card, Layanan },
 }
 </script>

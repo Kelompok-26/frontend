@@ -58,7 +58,7 @@ const actions = {
     this.$router.push('/admin/')
 
     store.commit('setToken', null)
-    store.commit('setToken', null)
+    store.commit('setIsAuth', null)
   },
 }
 

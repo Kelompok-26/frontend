@@ -3,6 +3,8 @@ const state = () => ({
   isAuth: false,
   level: '0',
   sakit: '',
+  id: null,
+  User: {},
 })
 
 const mutations = {
@@ -18,8 +20,12 @@ const mutations = {
     state.level = param
   },
 
-  setPenyakit(state, param) {
-    state.sakit = param
+  setID(state, param) {
+    state.id = param
+  },
+
+  setUser(state, param) {
+    state.User = param
   },
 }
 
@@ -36,27 +42,47 @@ const actions = {
         password: param.password,
       }
     )
+    if (response.data.User) {
+      this.$cookies.set('token', response.data.User, {
+        path: '/',
+      })
 
-    console.log(response.data)
-    // store.commit('setLevel', '1')
+      this.$cookies.set('role', 'User', {
+        path: '/',
+      })
+    }
+    const userID = response.data['User Id']
+    store.commit('setID', userID)
 
-    // localStorage.setItem('isAuth', true)
-    // if (response.data.Admin) {
-    //   this.$cookies.set('token', response.data.User, {
-    //     path: '/',
-    //   })
+    store.commit('setisAuth', true)
+    store.commit('setToken', response.data.User)
 
-    //   this.$cookies.set('role', 'User', {
-    //     path: '/',
-    //   })
-    // }
-
-    // store.commit('setisAuth', true)
-    // store.commit('setToken', response.data.data.token)
-
-    // this.$router.push('/')
+    this.$router.push('/')
   },
-  async fetchLogout(store) {},
+
+  async fetchUser(store, param) {
+    const config = {
+      method: 'get',
+      url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/users/${param.id}`,
+      headers: {
+        Authorization: `Bearer ${param.token}`,
+      },
+    }
+
+    const response = await this.$axios(config)
+
+    console.log(response.data.data)
+
+    store.commit('setUser', response.data.data)
+  },
+
+  fetchLogout(store) {
+    this.$cookies.remove('token')
+    this.$cookies.remove('role')
+    store.commit('setisAuth', 'false')
+    store.commit('setToken', null)
+    this.$router.push('/')
+  },
 }
 
 export { state, mutations, actions }

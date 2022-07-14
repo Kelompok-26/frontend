@@ -955,7 +955,6 @@
             >Welcome! <br />
             LogIn to continue</span
           >
-          <span>{{ getSakit }}</span>
         </div>
 
         <div class="flex flex-col w-96">
@@ -983,9 +982,11 @@
           Login
         </button>
 
-        <span class="text-white self-center"
+        <span class="text-white self-center cursor-pointer"
           >Dont have account?
-          <a href="#" class="text-[#EE6F57]">Register Now!</a></span
+          <Nuxtlink @click="Regist" class="text-[#EE6F57]"
+            >Register Now!
+          </Nuxtlink></span
         >
       </div>
     </div>
@@ -1006,14 +1007,14 @@ export default {
   },
 
   computed: {
-    getSakit() {
-      return this.$store.state.userAuth.sakit
-    },
-    getLevel() {
-      return this.$store.state.adminAuth.level
+    getisAuth() {
+      return this.$store.state.userAuth.isAuth
     },
   },
   methods: {
+    Regist() {
+      this.$router.push('/Register')
+    },
     auth() {
       this.$store.dispatch('userAuth/fetchLogin', {
         email: this.email,
