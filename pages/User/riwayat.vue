@@ -1,42 +1,8 @@
 <template>
   <!-- Start Content -->
   <div class="w-full px-10 flex flex-col gap-6">
-    <span class="text-[33px] font-semibold">Riwayat Transaksi dan Poin</span>
+    <span class="text-[33px] font-semibold">Riwayat Penggunaan Poin</span>
     <div class="items-center justify-evenly gap-6">
-      <button
-        @click="pageTransaksi = true"
-        :class="{ 'bg-[#00334E]': pageTransaksi }"
-        class="inline-block bg-white-100 border-2 w-72 border-[#00334E] px-4 py-4 gap-3 rounded-md"
-      >
-        <h4
-          class="text-2xl text-center"
-          :class="{
-            'text-white': pageTransaksi,
-            'text-[#00334E]': !pageTransaksi,
-          }"
-        >
-          Transaksi
-        </h4>
-      </button>
-
-      <button
-        :class="{
-          'bg-[#00334E]': !pageTransaksi,
-          'border-[#00334E]': pageTransaksi,
-        }"
-        class="inline-block w-72 px-4 py-4 gap-2 rounded-md border-2"
-        @click="pageTransaksi = false"
-      >
-        <h4
-          class="text-2xl text-center"
-          :class="{
-            'text-white': !pageTransaksi,
-            'text-[#00334E]': pageTransaksi,
-          }"
-        >
-          Poin
-        </h4>
-      </button>
     </div>
     <!-- Start Riwayat Transaksi -->
     <div v-if="!pageTransaksi">
@@ -51,18 +17,8 @@
 
             <div class="flex justify-between text-xl py-4">
               <div class="flex flex-col justify-evenly gap-2">
-                <span class="">Transaksi Cashout BRI 10K</span>
-                <button  
-                  v-if="pnt.status === 'Sukses'" 
-                  class="w-44 border border-[#D88203] bg-[#FEE59A] text-[#783A00] px-3 rounded-md">
-                    Dalam Proses
-                </button>
+               
 
-                <button 
-                  v-else 
-                  class="w-24 border border-[#037857] bg-[#CAFAD0] text-[#01504A] px-3 rounded-md">
-                    Sukses
-                </button>
               </div>
 
               <div class="flex flex-col items-end justify-end">
@@ -87,11 +43,8 @@
             <div class="flex justify-between text-xl">
               <div  class="flex flex-col items-start justify-start gap-2">
                 <span class="">Transaksi Cashout BRI 10K</span>
-                <button v-if="trk.status === 'Dalam Proses'" class="w-auto border border-[#D88203] bg-[#FEE59A] text-[#783A00] px-3 rounded-md">
-                    Dalam Proses
-                </button>
 
-                <button v-else class="w-auto border border-[#037857] bg-[#CAFAD0] text-[#01504A] px-3 rounded-md">
+                <button class="w-auto border border-[#037857] bg-[#CAFAD0] text-[#01504A] px-3 rounded-md">
                     Sukses
                 </button>
 

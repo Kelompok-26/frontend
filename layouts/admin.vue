@@ -2,8 +2,13 @@
   <div
     class="w-full h-auto mx-auto flex max-w-screen-2xl font-poppins bg-gray-200"
   >
+  <div class="flex justify-evenly -ml-[150px] w-full items-start"> 
     <Sidebar class="" />
-    <Nuxt />
+    <div class="flex flex-col">
+      <ProfileAdmin/>
+      <Nuxt />
+    </div>
+  </div>
   </div>
 </template>
 
