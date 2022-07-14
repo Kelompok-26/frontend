@@ -111,9 +111,7 @@
       <NuxtLink to="/User/point-user">
         <p class="hover:font-bold transition-all">Poin</p>
       </NuxtLink>
-      <NuxtLink to="/User/Redeem"
-        ><p class="hover:font-bold transition-all">Redeem</p></NuxtLink
-      >
+
       <NuxtLink to="/User/FAQ">
         <p class="hover:font-bold transition-all">FAQ</p>
       </NuxtLink>
@@ -121,6 +119,7 @@
 
     <div class="flex gap-6 items-center relative">
       <svg
+        v-if="getisAuth === true"
         width="60"
         height="58"
         viewBox="0 0 69 67"
@@ -133,13 +132,29 @@
         />
       </svg>
       <p
-        v-if="getisAuth"
+        v-if="getisAuth === true"
         class="font-bold cursor-pointer"
         @click="openProfile = !openProfile"
       >
-        Username
+        {{ getUser.name }}
       </p>
+
+      <div class="flex gap-4" v-if="getisAuth !== true">
+        <button
+          @click="login"
+          class="px-4 py-1 bg-[#00334e] text-white text-xl rounded-md font-semibold"
+        >
+          MASUK
+        </button>
+        <button
+          @click="regist"
+          class="px-4 py-1 border-2 border-[#00334e] bg-white text-[#00334e] text-xl rounded-md font-semibold"
+        >
+          DAFTAR
+        </button>
+      </div>
       <div
+        v-if="getisAuth === true"
         :class="{
           'translate-y-0': openProfile,
           ' -translate-y-[36rem]': !openProfile,
@@ -153,12 +168,21 @@
         <div
           class="px-6 flex flex-col gap-2 items-center justify-center w-full"
         >
-          <div
-            class="w-20 aspect-square rounded-full overflow-hidden bg-gray-500"
-          ></div>
+          <svg
+            width="120"
+            height="120"
+            viewBox="0 0 120 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M60 10C32.4 10 10 32.4 10 60C10 87.6 32.4 110 60 110C87.6 110 110 87.6 110 60C110 32.4 87.6 10 60 10ZM60 25C68.3 25 75 31.7 75 40C75 48.3 68.3 55 60 55C51.7 55 45 48.3 45 40C45 31.7 51.7 25 60 25ZM60 96C47.5 96 36.45 89.6 30 79.9C30.15 69.95 50 64.5 60 64.5C69.95 64.5 89.85 69.95 90 79.9C83.55 89.6 72.5 96 60 96Z"
+              fill="#878787"
+            />
+          </svg>
 
-          <p class="font-semibold">Indah Cahya</p>
-          <p class="font-light text-xs">@indahcahya</p>
+          <p class="font-semibold">{{ getUser.name }}</p>
+          <p class="font-light text-xs">{{ getUser.email }}</p>
         </div>
 
         <div class="flex flex-col gap-8 px-6">
@@ -175,9 +199,10 @@
 
         <div class="flex items-center justify-center">
           <button
+            @click="logout"
             class="flex items-center w-auto px-6 justify-center text-white text-xs aspect-[3/1] rounded-md bg-[#145374]"
           >
-            Simpan
+            Keluar
           </button>
         </div>
       </div>
@@ -197,8 +222,23 @@ export default {
   },
 
   computed: {
+    getUser() {
+      return this.$store.state.userAuth.User
+    },
     getisAuth() {
       return this.$store.state.userAuth.isAuth
+    },
+  },
+
+  methods: {
+    login() {
+      this.$router.push('/Login')
+    },
+    regist() {
+      this.$router.push('/Register')
+    },
+    logout() {
+      this.$store.dispatch('userAuth/fetchLogout')
     },
   },
 }

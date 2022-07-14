@@ -6,7 +6,7 @@
       <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-500"></div>
       <div class="flex flex-col gap-2">
         <p class="font-light">Halo,</p>
-        <h1 class="font-bold text-xl">Indah Cahya</h1>
+        <h1 class="font-bold text-xl">{{ getUser.name }}</h1>
       </div>
     </div>
     <!-- Start Content untuk router link -->
@@ -49,64 +49,81 @@
 
       <div class="flex flex-col gap-4">
         <p class="text-xl font-medium">Poin Anda saat ini</p>
-        <h1 class="text-5xl font-bold">300 Poin</h1>
+        <h1 class="text-5xl font-bold">
+          <span>{{ getUser.point }}</span> Poin
+        </h1>
       </div>
     </div>
     <!-- End Header Poin -->
 
-    <div 
+    <div
       v-if="dialog"
-      class="w-full fixed h-screen left-0 top-0 bg-black opacity-50 z-10">
-    </div>
+      class="w-full fixed h-screen left-0 top-0 bg-black opacity-50 z-10"
+    ></div>
 
     <!-- Dialog -->
-    <div 
+    <div
       :class="{
         '-translate-y-1/2': dialog,
         '-translate-y-full': !dialog,
         'opacity-100': dialog,
         'opacity-0': !dialog,
         '-z-10': !dialog,
-        'z-20': dialog
+        'z-20': dialog,
       }"
       class="w-[52rem] aspect-video fixed flex flex-col -translate-x-1/2 left-1/2 top-1/2 bg-white gap-5 pb-8 rounded-md duration-300 ease-in-out"
     >
       <div class="flex items-center justify-between px-6 py-6 shadow-md">
         <h1 class="text-2xl font-bold">Benefit yang kamu dapatkan</h1>
-        <svg 
-          class="cursor-pointer" 
-          width="22" height="21" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg"
-          @click="dialog=false"
+        <svg
+          class="cursor-pointer"
+          width="22"
+          height="21"
+          viewBox="0 0 28 27"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          @click="dialog = false"
         >
-          <path 
-            d="M16.991 13.4545L26.5373 3.929C26.9554 3.51089 27.1902 2.94382 27.1902 2.35252C27.1902 1.76123 26.9554 1.19415 26.5373 0.776046C26.1193 0.357938 25.5523 0.123047 24.9611 0.123047C24.3698 0.123047 23.8029 0.357938 23.3848 0.776046L13.8607 10.3237L4.33655 0.776046C3.9185 0.357938 3.3515 0.123047 2.76029 0.123047C2.16908 0.123047 1.60209 0.357938 1.18404 0.776046C0.76599 1.19415 0.531133 1.76123 0.531133 2.35252C0.531133 2.94382 0.76599 3.51089 1.18404 3.929L10.7304 13.4545L1.18404 22.98C0.975954 23.1864 0.810794 23.432 0.698084 23.7025C0.585373 23.9731 0.527344 24.2633 0.527344 24.5564C0.527344 24.8496 0.585373 25.1398 0.698084 25.4104C0.810794 25.6809 0.975954 25.9265 1.18404 26.1329C1.39042 26.341 1.63597 26.5062 1.9065 26.6189C2.17704 26.7317 2.46722 26.7897 2.76029 26.7897C3.05337 26.7897 3.34355 26.7317 3.61408 26.6189C3.88462 26.5062 4.13016 26.341 4.33655 26.1329L13.8607 16.5852L23.3848 26.1329C23.5912 26.341 23.8367 26.5062 24.1073 26.6189C24.3778 26.7317 24.668 26.7897 24.9611 26.7897C25.2541 26.7897 25.5443 26.7317 25.8148 26.6189C26.0854 26.5062 26.3309 26.341 26.5373 26.1329C26.7454 25.9265 26.9106 25.6809 27.0233 25.4104C27.136 25.1398 27.194 24.8496 27.194 24.5564C27.194 24.2633 27.136 23.9731 27.0233 23.7025C26.9106 23.432 26.7454 23.1864 26.5373 22.98L16.991 13.4545Z" fill="black" fill-opacity="0.7"/>
+          <path
+            d="M16.991 13.4545L26.5373 3.929C26.9554 3.51089 27.1902 2.94382 27.1902 2.35252C27.1902 1.76123 26.9554 1.19415 26.5373 0.776046C26.1193 0.357938 25.5523 0.123047 24.9611 0.123047C24.3698 0.123047 23.8029 0.357938 23.3848 0.776046L13.8607 10.3237L4.33655 0.776046C3.9185 0.357938 3.3515 0.123047 2.76029 0.123047C2.16908 0.123047 1.60209 0.357938 1.18404 0.776046C0.76599 1.19415 0.531133 1.76123 0.531133 2.35252C0.531133 2.94382 0.76599 3.51089 1.18404 3.929L10.7304 13.4545L1.18404 22.98C0.975954 23.1864 0.810794 23.432 0.698084 23.7025C0.585373 23.9731 0.527344 24.2633 0.527344 24.5564C0.527344 24.8496 0.585373 25.1398 0.698084 25.4104C0.810794 25.6809 0.975954 25.9265 1.18404 26.1329C1.39042 26.341 1.63597 26.5062 1.9065 26.6189C2.17704 26.7317 2.46722 26.7897 2.76029 26.7897C3.05337 26.7897 3.34355 26.7317 3.61408 26.6189C3.88462 26.5062 4.13016 26.341 4.33655 26.1329L13.8607 16.5852L23.3848 26.1329C23.5912 26.341 23.8367 26.5062 24.1073 26.6189C24.3778 26.7317 24.668 26.7897 24.9611 26.7897C25.2541 26.7897 25.5443 26.7317 25.8148 26.6189C26.0854 26.5062 26.3309 26.341 26.5373 26.1329C26.7454 25.9265 26.9106 25.6809 27.0233 25.4104C27.136 25.1398 27.194 24.8496 27.194 24.5564C27.194 24.2633 27.136 23.9731 27.0233 23.7025C26.9106 23.432 26.7454 23.1864 26.5373 22.98L16.991 13.4545Z"
+            fill="black"
+            fill-opacity="0.7"
+          />
         </svg>
       </div>
-      
+
       <div class="flex flex-col justify-start rounded-lg px-8 gap-3">
         <span class="bg-[#F6F5F5] rounded-md px-5 py-5">
-          Kamu dapat melakukan penukaran poin dengan berbagai macam penawaran sejak <br>
-          bergabung menjadi member C-Loyal</span>
+          Kamu dapat melakukan penukaran poin dengan berbagai macam penawaran
+          sejak <br />
+          bergabung menjadi member C-Loyal</span
+        >
 
         <span class="bg-gray-100 rounded-md px-5 py-5">
-          Dapatkan lebih banyak penawaran yang menarik dengan mengumpulkan poin <br>
-           yang sebanyak-banyaknya</span>
+          Dapatkan lebih banyak penawaran yang menarik dengan mengumpulkan poin
+          <br />
+          yang sebanyak-banyaknya</span
+        >
 
         <span class="bg-gray-100 rounded-md px-5 py-5">
-          Kamu dapat mengumpulkan poin melalui pembelian yang dilakukan pada halaman <br> 
-        redeem dan dapat kamu tukarkan secara langsung pada aplikasi C-Loyal</span>
+          Kamu dapat mengumpulkan poin melalui pembelian yang dilakukan pada
+          halaman <br />
+          redeem dan dapat kamu tukarkan secara langsung pada aplikasi
+          C-Loyal</span
+        >
 
         <span class="bg-gray-100 rounded-md px-5 py-5">
-          C-Loyal poin memberikanmu kemudahan untuk melakukan berbagai transaksi <br> 
-        degan cepat</span>
-        
+          C-Loyal poin memberikanmu kemudahan untuk melakukan berbagai transaksi
+          <br />
+          degan cepat</span
+        >
       </div>
     </div>
     <!-- End Dialog -->
 
     <div
       class="w-full py-4 flex items-center justify-center rounded-md gap-10 px-10 bg-[#00334E] text-white font-semibold text-xl cursor-pointer"
-      @click="dialog=true"
+      @click="dialog = true"
     >
       Cek benefit tukar poin
     </div>
@@ -117,18 +134,25 @@
       <div class="flex flex-col gap-6">
         <div class="flex flex-row justify-between items-center">
           <p class="text-xl font-bold">Rekomendasi Paket Data</p>
-          <p class="text-lg font-light">Semua<span class="pl-2">></span></p>
+          <p
+            class="text-lg font-semibold text-[#145374] cursor-pointer"
+            @click="showAllBenefit(paketDataParam)"
+          >
+            Semua
+          </p>
         </div>
         <div
           class="flex gap-4 pb-4 overscroll-x-contain overflow-x-scroll w-auto scrollbar-hide"
         >
           <Card
-            v-for="(paket, idx) in paketData"
+            v-for="(paket, idx) in product"
             :key="idx"
-            :nominal="paket.nominal"
-            :productType="paket.productType"
-            :poin="paket.poin"
+            :nominal="paket.product_name"
+            :productType="paket.type_product"
+            :index="idx"
+            :poin="paket.point"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/paketdata__pyAZJU4et.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375508716'"
+            v-on:toDetail="toDetail(idx)"
           />
         </div>
       </div>
@@ -138,7 +162,12 @@
       <div class="flex flex-col gap-6">
         <div class="flex flex-row justify-between items-center">
           <p class="text-xl font-bold">Rekomendasi Pulsa</p>
-          <p class="text-lg font-light">Semua<span class="pl-2">></span></p>
+          <p
+            class="text-lg font-semibold text-[#145374] cursor-pointer"
+            @click="showAllBenefit(pulsaParam)"
+          >
+            Semua
+          </p>
         </div>
 
         <div
@@ -147,10 +176,12 @@
           <Card
             v-for="(paket, idx) in pulsa"
             :key="idx"
-            :nominal="paket.nominal"
-            :productType="paket.productType"
-            :poin="paket.poin"
+            :nominal="paket.product_name"
+            :productType="paket.type_product"
+            :index="idx"
+            :poin="paket.point"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/pulsa_Dgic1XZnM.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300119237'"
+            v-on:toDetail="toDetail(idx)"
           />
         </div>
       </div>
@@ -160,7 +191,12 @@
       <div class="flex flex-col gap-6">
         <div class="flex flex-row justify-between items-center">
           <p class="text-xl font-bold">Rekomendasi Cashout</p>
-          <p class="text-lg font-light">Semua<span class="pl-2">></span></p>
+          <p
+            class="text-lg font-semibold text-[#145374] cursor-pointer"
+            @click="showAllBenefit(cashoutParam)"
+          >
+            Semua
+          </p>
         </div>
 
         <div
@@ -169,10 +205,12 @@
           <Card
             v-for="(paket, idx) in cashout"
             :key="idx"
-            :nominal="paket.nominal"
-            :productType="paket.productType"
-            :poin="paket.poin"
+            :nominal="paket.product_name"
+            :productType="paket.type_product"
+            :index="idx"
+            :poin="paket.point"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/cashout_UhMhjSBXXV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375554772'"
+            v-on:toDetail="toDetail(idx)"
           />
         </div>
       </div>
@@ -183,10 +221,10 @@
         <div class="flex flex-row justify-between items-center">
           <p class="text-xl font-bold">Rekomendasi E-Money</p>
           <p
-            class="text-lg font-light cursor-pointer"
-            @click="redirectBenefit(emoney)"
+            class="text-lg font-semibold text-[#145374] cursor-pointer"
+            @click="showAllBenefit(emoneyParam)"
           >
-            Semua<span class="pl-2">></span>
+            Semua
           </p>
         </div>
 
@@ -196,10 +234,12 @@
           <Card
             v-for="(paket, idx) in emoney"
             :key="idx"
-            :nominal="paket.nominal"
-            :productType="paket.productType"
-            :poin="paket.poin"
+            :nominal="paket.product_name"
+            :productType="paket.type_product"
+            :index="idx"
+            :poin="paket.point"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/emoney_LVf6ujW1Q.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375609772'"
+            v-on:toDetail="toDetail(idx)"
           />
         </div>
       </div>
@@ -217,150 +257,59 @@ export default {
   data() {
     return {
       dialog: false,
-      paketData: [
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '1 GB',
-          productType: 'Paket Data',
-          poin: '10 Poin',
-        },
-      ],
-      pulsa: [
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Pulsa',
-          poin: '10 Poin',
-        },
-      ],
-      cashout: [
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'Cashout',
-          poin: '10 Poin',
-        },
-      ],
-      emoney: [
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-        {
-          nominal: '10k',
-          productType: 'E-Money',
-          poin: '10 Poin',
-        },
-      ],
+      paketDataParam: 'Paket Data',
+      pulsaParam: 'Pulsa',
+      cashoutParam: 'Cashout',
+      emoneyParam: 'E-Money',
     }
+  },
+  computed: {
+    getUser() {
+      return this.$store.state.userAuth.User
+    },
+    getLevel() {
+      return this.$store.state.userAuth.id
+    },
+
+    pulsa() {
+      return this.$store.state.product.product.filter((el) => {
+        return el.type_product === 'Pulsa'
+      })
+    },
+    cashout() {
+      return this.$store.state.product.product.filter((el) => {
+        return el.type_product === 'Cashout'
+      })
+    },
+    emoney() {
+      return this.$store.state.product.product.filter((el) => {
+        return el.type_product === 'E-Money'
+      })
+    },
+
+    product() {
+      return this.$store.state.product.product.filter((el) => {
+        return el.type_product === 'Paket Data'
+      })
+    },
+  },
+  methods: {
+    showAllBenefit(prodType) {
+      this.$router.push({
+        name: 'User-product-productType',
+        params: {
+          productType: prodType,
+        },
+      })
+    },
+    toDetail(idx) {
+      this.$router.push({
+        name: 'User-product-detail-tukar',
+        params: {
+          index: idx,
+        },
+      })
+    },
   },
   components: { Card },
 }

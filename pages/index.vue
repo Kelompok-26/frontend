@@ -9513,13 +9513,12 @@
           Fast and simple <br />digital payment <br />
           solution
         </h3>
-        <NuxtLink to="#product">
-          <button
-            class="w-auto px-4 aspect-[3/1] rounded-md border-2 border-black"
-          >
-            Explore Now!
-          </button>
-        </NuxtLink>
+
+        <button
+          class="w-auto px-4 aspect-[3/1] rounded-md border-2 border-black"
+        >
+          <a href="#product">Explore Now</a>
+        </button>
       </div>
     </div>
     <div class="flex items-center justify-evenly gap-6">
@@ -9561,7 +9560,9 @@
 
         <div class="flex flex-col items-center justify-center gap-2">
           <p class="font-light text-2xl">POIN KAMU</p>
-          <h4 class="text-4xl font-bold">200 Poin</h4>
+          <h4 class="text-4xl font-bold">
+            <span>{{ getUser.point }}</span> Poin
+          </h4>
         </div>
       </div>
       <div
@@ -9624,7 +9625,7 @@
 
       <div class="flex flex-col justify-start gap-1 text-white">
         <h4 class="text-xl font-semibold">Tahukah cara menggunakan poin?</h4>
-        <p class="font-light text-lg">Ketuk banner ini!</p>
+        <p class="font-light text-lg">Klik banner ini!</p>
       </div>
     </div>
     <!-- End Banner -->
@@ -9645,13 +9646,13 @@
           class="flex gap-4 pb-4 overscroll-x-contain overflow-x-scroll w-auto scrollbar-hide"
         >
           <Card
-            v-for="(paket, idx) in paketData"
+            v-for="(paket, idx) in product"
             :key="idx"
-            :nominal="paket.nominal"
-            :productType="paket.productType"
-            :poin="paket.poin"
-            :backgroundImage="'https://ik.imagekit.io/drigoalexander/paketdata__pyAZJU4et.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375508716'"
+            :nominal="paket.product_name"
+            :productType="paket.type_product"
             :index="idx"
+            :poin="paket.point"
+            :backgroundImage="'https://ik.imagekit.io/drigoalexander/paketdata__pyAZJU4et.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375508716'"
             v-on:toDetail="toDetail(idx)"
           />
         </div>
@@ -9676,10 +9677,10 @@
           <Card
             v-for="(paket, idx) in pulsa"
             :key="idx"
-            :nominal="paket.nominal"
-            :productType="paket.productType"
+            :nominal="paket.product_name"
+            :productType="paket.type_product"
             :index="idx"
-            :poin="paket.poin"
+            :poin="paket.point"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/pulsa_Dgic1XZnM.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300119237'"
             v-on:toDetail="toDetail(idx)"
           />
@@ -9705,10 +9706,10 @@
           <Card
             v-for="(paket, idx) in cashout"
             :key="idx"
-            :nominal="paket.nominal"
-            :productType="paket.productType"
-            :poin="paket.poin"
+            :nominal="paket.product_name"
+            :productType="paket.type_product"
             :index="idx"
+            :poin="paket.point"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/cashout_UhMhjSBXXV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375554772'"
             v-on:toDetail="toDetail(idx)"
           />
@@ -9734,10 +9735,10 @@
           <Card
             v-for="(paket, idx) in emoney"
             :key="idx"
-            :nominal="paket.nominal"
-            :productType="paket.productType"
-            :poin="paket.poin"
+            :nominal="paket.product_name"
+            :productType="paket.type_product"
             :index="idx"
+            :poin="paket.point"
             :backgroundImage="'https://ik.imagekit.io/drigoalexander/emoney_LVf6ujW1Q.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375609772'"
             v-on:toDetail="toDetail(idx)"
           />
@@ -9763,26 +9764,41 @@ export default {
   data() {
     return {
       banner: false,
-      paketDataParam: 'paketData',
-      pulsaParam: 'pulsa',
-      cashoutParam: 'cashout',
-      emoneyParam: 'emoney',
+      paketDataParam: 'Paket Data',
+      pulsaParam: 'Pulsa',
+      cashoutParam: 'Cashout',
+      emoneyParam: 'E-Money',
     }
   },
 
   computed: {
-    paketData() {
-      return this.$store.state.product.paketData
+    getUser() {
+      return this.$store.state.userAuth.User
+    },
+    getLevel() {
+      return this.$store.state.userAuth.id
     },
 
     pulsa() {
-      return this.$store.state.product.pulsa
+      return this.$store.state.product.product.filter((el) => {
+        return el.type_product === 'Pulsa'
+      })
     },
     cashout() {
-      return this.$store.state.product.cashout
+      return this.$store.state.product.product.filter((el) => {
+        return el.type_product === 'Cashout'
+      })
     },
     emoney() {
-      return this.$store.state.product.emoney
+      return this.$store.state.product.product.filter((el) => {
+        return el.type_product === 'E-Money'
+      })
+    },
+
+    product() {
+      return this.$store.state.product.product.filter((el) => {
+        return el.type_product === 'Paket Data'
+      })
     },
   },
   methods: {
@@ -9804,7 +9820,18 @@ export default {
       })
     },
   },
+  created() {
+    if (this.$cookies.get('token')) {
+      const tokens = this.$store.state.userAuth.token
+      const ids = this.$store.state.userAuth.id
+      this.$store.dispatch('userAuth/fetchUser', {
+        token: tokens,
+        id: ids,
+      })
+    }
 
+    this.$store.dispatch('product/fetchProduct')
+  },
   components: { Card, Layanan },
 }
 </script>

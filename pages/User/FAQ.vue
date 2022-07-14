@@ -102,72 +102,6 @@
       </div>
     </div>
     <!-- End of Transaksi -->
-
-    <!-- Pengembalian Dana -->
-    <div class="w-full rounded-lg bg-white block px-4 py-4">
-      <div class="flex flex-col gap-2">
-        <span class="font-bold">Pengembalian Dana</span>
-        <div
-          class="flex flex-col gap-2"
-          v-for="(pngm, idx) in pengembalianDana"
-          :key="idx"
-        >
-          <div
-            class="flex justify-between relative cursor-pointer"
-            @click="redirectPage(idx, pngm.type)"
-          >
-            <span class="justify-evenly">{{ pngm.pertanyaan }}</span>
-            <svg
-              class="bi bi-chevron-right justify-evenly stroke-black stroke"
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Pengembalian Dana -->
-
-    <!-- Pembayaran -->
-    <div class="w-full rounded-lg bg-white block px-4 py-4">
-      <div class="flex flex-col gap-2">
-        <span class="font-bold">Pembayaran</span>
-        <div
-          class="flex flex-col gap-2"
-          v-for="(pembayaran, idx) in pembayaran"
-          :key="idx"
-        >
-          <div
-            class="flex justify-between relative cursor-pointer"
-            @click="redirectPage(idx, pembayaran.type)"
-          >
-            <span class="justify-evenly">{{ pembayaran.pertanyaan }}</span>
-            <svg
-              class="bi bi-chevron-right justify-evenly stroke-black stroke"
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Pembayaran -->
   </div>
 
   <!-- End of Bar Question -->
@@ -183,23 +117,15 @@ export default {
 
   computed: {
     umum() {
-      return this.$store.state.faq.umum
+      return this.$store.state.FQ.umum
     },
 
     akun() {
-      return this.$store.state.faq.akun
+      return this.$store.state.FQ.akun
     },
 
     transaksi() {
-      return this.$store.state.faq.transaksi
-    },
-
-    pengembalianDana() {
-      return this.$store.state.faq.pengembalianDana
-    },
-
-    pembayaran() {
-      return this.$store.state.faq.pembayaran
+      return this.$store.state.FQ.transaksi
     },
   },
   methods: {

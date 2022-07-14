@@ -1,15 +1,16 @@
 <!-- Please remove this file from your project -->
 <template>
   <div
-    class="flex flex-col items-start px-10 pt-6 gap-6 h-[130vh] w-1/4 shadow-xl bg-white"
+    class="flex flex-col items-start px-10 pt-6 gap-6 min-h-screen h-full w-1/4 shadow-xl"
   >
-    <div class="fixed">
+    <div class="fixed min-h-screen h-full bg-white px-10 pt-6 left-0 top-0">
       <h1 class="text-[#00334E] font-extrabold text-2xl">C-Loyal</h1>
 
       <div class="flex flex-col gap-4 w-full">
+        <NuxtLink to="/admin/dashboard">
         <div
-          class="flex w-full items-center gap-4 p-2 rounded-lg active:bg-[#00334e] text-black active:text-white group"
-        >
+          class="cursor-pointer flex w-full items-center gap-4 p-2 rounded-lg active:bg-[#145374] text-black active:text-white group"
+        > 
           <svg
             class="stroke-black group-active:stroke-white"
             width="31"
@@ -25,9 +26,11 @@
           </svg>
           <span>Home</span>
         </div>
+        </NuxtLink>
 
+        <NuxtLink to="/admin/data-user">
         <div
-          class="flex w-full items-center gap-4 p-2 rounded-lg active:bg-[#00334e] text-black active:text-white group"
+          class="flex w-full cursor-pointer items-center gap-4 p-2 rounded-lg active:bg-[#145374] text-black active:text-white group"
         >
           <svg
             class="stroke-black group-active:stroke-white"
@@ -49,9 +52,11 @@
 
           <span>User</span>
         </div>
+        </NuxtLink>
 
+        <NuxtLink to="/admin/poin">
         <div
-          class="flex w-full items-center gap-4 p-2 rounded-lg active:bg-[#00334e] text-black active:text-white group"
+          class="flex w-full cursor-pointer items-center gap-4 p-2 rounded-lg active:bg-[#145374] text-black active:text-white group"
         >
           <svg
             class="stroke-black group-active:stroke-white"
@@ -89,6 +94,7 @@
 
           <span>Poin</span>
         </div>
+        </NuxtLink>
 
         <div class="flex flex-col gap-4">
           <div
@@ -127,13 +133,20 @@
             </svg>
           </div>
           <div v-if="isOpening" class="flex flex-col gap-6">
-            <p class="pl-14">Pulsa</p>
-            <p class="pl-14">Paket Data</p>
+            <p
+              class="pl-14"
+              v-for="(prod, idx) in product"
+              :key="idx"
+              @click="toProduct(prod.name)"
+            >
+              {{ prod.name }}
+            </p>
           </div>
         </div>
 
+        <NuxtLink to="/admin/history">
         <div
-          class="flex w-full items-center gap-4 p-2 rounded-lg active:bg-[#00334e] text-black active:text-white group"
+          class="flex w-full cursor-pointer items-center gap-4 p-2 rounded-lg active:bg-[#145374] text-black active:text-white group"
         >
           <svg
             class="stroke-black group-active:stroke-white"
@@ -151,79 +164,64 @@
 
           <span>History</span>
         </div>
-      </div>
-      <div class="flex flex-col gap-4 items-center justify-center w-full">
-        <div class="w-24 h-24 rounded-full bg-amber-300"></div>
-        <h2 class="text-slate-600 text-lg">Brooklyn Simmons</h2>
-        <p class="text-slate-600 opacity-[37%] -mt-4">
-          brooklynsimmons@gmail.com
-        </p>
-      </div>
+        </NuxtLink>
 
-      <div class="flex items-center justify-center gap-4 w-full">
-        <div class="w-auto p-1 shadow-sm rounded-lg">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 35 35"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M27.5806 20.2805L25.9815 18.9133C26.0571 18.4495 26.0962 17.9758 26.0962 17.5022C26.0962 17.0286 26.0571 16.5549 25.9815 16.0911L27.5806 14.7239C27.7012 14.6206 27.7875 14.4831 27.8281 14.3296C27.8686 14.1761 27.8615 14.0139 27.8076 13.8645L27.7857 13.801C27.3454 12.5706 26.6862 11.43 25.8399 10.4343L25.7959 10.3831C25.6932 10.2623 25.5564 10.1756 25.4034 10.1341C25.2504 10.0927 25.0885 10.0987 24.939 10.1511L22.9541 10.8567C22.2217 10.2561 21.4038 9.78247 20.52 9.45044L20.1367 7.37524C20.1078 7.2191 20.0321 7.07545 19.9196 6.96337C19.807 6.8513 19.6631 6.77612 19.5068 6.7478L19.4409 6.7356C18.169 6.5061 16.8311 6.5061 15.5591 6.7356L15.4932 6.7478C15.3369 6.77612 15.193 6.8513 15.0805 6.96337C14.968 7.07545 14.8922 7.2191 14.8633 7.37524L14.4775 9.4602C13.6008 9.79231 12.7843 10.2657 12.0606 10.8616L10.061 10.1511C9.91154 10.0982 9.7495 10.0921 9.59643 10.1335C9.44336 10.175 9.30653 10.262 9.20411 10.3831L9.16016 10.4343C8.31482 11.4307 7.65571 12.5711 7.21436 13.801L7.19239 13.8645C7.08252 14.1697 7.17286 14.5115 7.41944 14.7239L9.03809 16.1057C8.96241 16.5647 8.92579 17.0334 8.92579 17.4998C8.92579 17.9685 8.96241 18.4373 9.03809 18.8938L7.41944 20.2756C7.29882 20.3789 7.2125 20.5164 7.17194 20.6699C7.13138 20.8234 7.13851 20.9857 7.19239 21.135L7.21436 21.1985C7.65626 22.429 8.31055 23.5642 9.16016 24.5652L9.20411 24.6165C9.30678 24.7372 9.44362 24.824 9.59659 24.8654C9.74957 24.9068 9.9115 24.9008 10.061 24.8484L12.0606 24.1379C12.7881 24.7361 13.6011 25.2097 14.4775 25.5393L14.8633 27.6243C14.8922 27.7804 14.968 27.9241 15.0805 28.0361C15.193 28.1482 15.3369 28.2234 15.4932 28.2517L15.5591 28.2639C16.8427 28.4946 18.1573 28.4946 19.4409 28.2639L19.5068 28.2517C19.6631 28.2234 19.807 28.1482 19.9196 28.0361C20.0321 27.9241 20.1078 27.7804 20.1367 27.6243L20.52 25.5491C21.4035 25.2179 22.2259 24.7427 22.9541 24.1428L24.939 24.8484C25.0885 24.9013 25.2505 24.9074 25.4036 24.866C25.5567 24.8245 25.6935 24.7375 25.7959 24.6165L25.8399 24.5652C26.6895 23.5618 27.3438 22.429 27.7857 21.1985L27.8076 21.135C27.9175 20.8347 27.8272 20.4929 27.5806 20.2805ZM24.2481 16.3791C24.3091 16.7478 24.3408 17.1262 24.3408 17.5046C24.3408 17.8831 24.3091 18.2615 24.2481 18.6301L24.0869 19.6091L25.9107 21.1692C25.6342 21.8061 25.2852 22.4091 24.8706 22.9661L22.605 22.1628L21.8384 22.7927C21.2549 23.2712 20.6055 23.6472 19.9024 23.9109L18.9722 24.26L18.5352 26.6282C17.8456 26.7063 17.1495 26.7063 16.46 26.6282L16.023 24.2551L15.1001 23.9011C14.4043 23.6375 13.7573 23.2615 13.1787 22.7854L12.4121 22.1531L10.1318 22.9636C9.7168 22.4045 9.37012 21.8015 9.0918 21.1667L10.9351 19.592L10.7764 18.6155C10.7178 18.2517 10.686 17.8757 10.686 17.5046C10.686 17.1311 10.7153 16.7576 10.7764 16.3938L10.9351 15.4172L9.0918 13.8425C9.36768 13.2053 9.7168 12.6047 10.1318 12.0457L12.4121 12.8562L13.1787 12.2239C13.7573 11.7478 14.4043 11.3718 15.1001 11.1082L16.0254 10.759L16.4624 8.38599C17.1484 8.30786 17.8491 8.30786 18.5376 8.38599L18.9746 10.7541L19.9048 11.1033C20.6055 11.3669 21.2573 11.7429 21.8408 12.2214L22.6074 12.8513L24.8731 12.0481C25.2881 12.6072 25.6348 13.2102 25.9131 13.845L24.0894 15.405L24.2481 16.3791ZM17.5024 12.9636C15.1294 12.9636 13.2056 14.8875 13.2056 17.2605C13.2056 19.6335 15.1294 21.5574 17.5024 21.5574C19.8755 21.5574 21.7993 19.6335 21.7993 17.2605C21.7993 14.8875 19.8755 12.9636 17.5024 12.9636ZM19.436 19.1941C19.1824 19.4484 18.881 19.6501 18.5492 19.7875C18.2174 19.925 17.8616 19.9954 17.5024 19.9949C16.7725 19.9949 16.0864 19.7092 15.5689 19.1941C15.3145 18.9405 15.1128 18.6391 14.9754 18.3072C14.838 17.9754 14.7675 17.6197 14.7681 17.2605C14.7681 16.5305 15.0537 15.8445 15.5689 15.3269C16.0864 14.8093 16.7725 14.5261 17.5024 14.5261C18.2324 14.5261 18.9185 14.8093 19.436 15.3269C19.6904 15.5805 19.8921 15.8819 20.0295 16.2137C20.1669 16.5456 20.2374 16.9013 20.2368 17.2605C20.2368 17.9905 19.9512 18.6765 19.436 19.1941Z"
-              fill="#656565"
-            />
-            <rect
-              x="0.5"
-              y="0.5"
-              width="34"
-              height="34"
-              rx="6.5"
-              stroke="#CECECE"
-              stroke-opacity="0.6"
-            />
+        <div
+          class="flex w-full cursor-pointer items-center gap-4 p-2 rounded-lg bg-[#145374] text-white active:text-white group"
+        >
+          <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.25 17L24.25 12M24.25 12L19.25 7M24.25 12H6.75M14.25 17V18.25C14.25 19.2446 13.8549 20.1984 13.1517 20.9017C12.4484 21.6049 11.4946 22 10.5 22H5.5C4.50544 22 3.55161 21.6049 2.84835 20.9017C2.14509 20.1984 1.75 19.2446 1.75 18.25V5.75C1.75 4.75544 2.14509 3.80161 2.84835 3.09835C3.55161 2.39509 4.50544 2 5.5 2H10.5C11.4946 2 12.4484 2.39509 13.1517 3.09835C13.8549 3.80161 14.25 4.75544 14.25 5.75V7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
 
-        <div class="w-auto p-1 shadow-sm rounded-lg">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 35 35"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M18.5417 21.6665V22.7082C18.5417 23.537 18.2124 24.3318 17.6264 24.9179C17.0403 25.5039 16.2455 25.8332 15.4167 25.8332H11.25C10.4212 25.8332 9.62634 25.5039 9.04029 24.9179C8.45424 24.3318 8.125 23.537 8.125 22.7082V12.2915C8.125 11.4627 8.45424 10.6678 9.04029 10.0818C9.62634 9.49574 10.4212 9.1665 11.25 9.1665H15.4167C16.2455 9.1665 17.0403 9.49574 17.6264 10.0818C18.2124 10.6678 18.5417 11.4627 18.5417 12.2915V13.3332M22.7083 21.6665L26.875 17.4998L22.7083 21.6665ZM26.875 17.4998L22.7083 13.3332L26.875 17.4998ZM26.875 17.4998H12.2917H26.875Z"
-              stroke="#656565"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <rect
-              x="0.5"
-              y="0.5"
-              width="34"
-              height="34"
-              rx="6.5"
-              stroke="#CECECE"
-              stroke-opacity="0.6"
-            />
-          </svg>
+
+          <span @click="logout">Logout</span>
         </div>
       </div>
+
+
     </div>
   </div>
 </template>
 
 <script>
+// import jwt_decode from 'jwt-decode'
 export default {
   data() {
     return {
       isOpening: false,
+      product: [
+        { name: 'Paket Data' },
+        { name: 'Pulsa' },
+        { name: 'Cashout' },
+        { name: 'E-Money' },
+      ],
     }
+  },
+
+  computed: {
+    // getToken() {
+    //   // return jwt_decode(this.$store.state.authAdmin.token)
+    // },
   },
   name: 'SideBar',
   components: true,
+
+  methods: {
+    logout() {
+      this.$store.dispatch('adminAuth/adminLogout')
+    },
+    toProduct(nameProduct) {
+      this.$router.push({
+        name: 'admin-typeProduct',
+        params: {
+          typeProduct: nameProduct,
+        },
+      })
+
+      this.$store.dispatch('adminProduct/fetchProduct', {
+        typeProduct: nameProduct,
+      })
+    },
+  },
 }
 </script>

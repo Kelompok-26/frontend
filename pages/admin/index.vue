@@ -31,14 +31,15 @@
     <div class="w-1/2 flex items-center justify-center bg-[#145374] text-white">
       <form action="" class="flex flex-col gap-20 items-start w-96">
         <h2 class="text-3xl font-semibold">Welcome! <br />Login to continue</h2>
+        <p class="text-white">{{ getLevel }}</p>
 
         <div class="flex flex-col gap-4 w-full">
           <div class="flex flex-col gap-2">
-            <label for="Notelephone">No.telepon</label>
+            <label for="Notelephone">Email</label>
             <input
-              v-model="Notelephone"
+              v-model="email"
               type="text"
-              name="Notelephone"
+              name="email"
               id=""
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
             />
@@ -56,7 +57,8 @@
           </div>
         </div>
         <div
-          class="w-full bg-[#EE6F57] text-white rounded-lg aspect-[7.4/1] text-xl font-bold flex items-center justify-center"
+          @click="auth"
+          class="w-full bg-[#EE6F57] text-white rounded-lg aspect-[7.4/1] text-xl font-bold flex items-center cursor-pointer justify-center"
         >
           Login
         </div>
@@ -69,10 +71,24 @@
 export default {
   data() {
     return {
-      Notelephone: '',
+      email: '',
       username: '',
       password: '',
     }
+  },
+
+  computed: {
+    getLevel() {
+      return this.$store.state.adminAuth.level
+    },
+  },
+  methods: {
+    auth() {
+      this.$store.dispatch('adminAuth/fetchLogin', {
+        email: this.email,
+        password: this.password,
+      })
+    },
   },
   layout: 'empty',
 }

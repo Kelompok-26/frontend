@@ -40,13 +40,9 @@ export default {
 
   computed: {
     getFAQ() {
-      if (this.faq === 'umum') return this.$store.state.faq.umum
-      else if (this.faq === 'akun') return this.$store.state.faq.akun
-      else if (this.faq === 'transaksi') return this.$store.state.faq.transaksi
-      else if (this.faq === 'pengembalianDana')
-        return this.$store.state.faq.pengembalianDana
-      else if (this.faq === 'pembayaran')
-        return this.$store.state.faq.pembayaran
+      if (this.faq === 'umum') return this.$store.state.FQ.umum
+      else if (this.faq === 'akun') return this.$store.state.FQ.akun
+      else if (this.faq === 'transaksi') return this.$store.state.FQ.transaksi
       else return 'nothing'
     },
   },
