@@ -167,14 +167,30 @@ export const state = () => ({
       poin: '10 Poin',
     },
   ],
+
+  product: [],
 })
 
-export const getter = {}
+export const getter = {
+  getPaketData(state) {
+    return state.product.filter(state.product.type_product === 'Paket Data')
+  },
+}
 
 export const mutations = {
-  
+  setProduct(state, param) {
+    state.product = param
+  },
 }
 
 export const actions = {
-  
+  async fetchProduct(store) {
+    const response = await this.$axios.get(
+      'http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/products'
+    )
+
+    console.log(response.data)
+
+    store.commit('setProduct', response.data.data)
+  },
 }

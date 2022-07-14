@@ -71,8 +71,6 @@ const actions = {
 
     const response = await this.$axios(config)
 
-    console.log(response.data.data)
-
     store.commit('setUser', response.data.data)
   },
 
