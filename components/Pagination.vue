@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex flex-col gap-20 bg-blue-500 w-full h-screen px-20 mx-auto py-10"
-  >
+  <div class="flex flex-col gap-20 w-full h-screen px-20 mx-auto py-10">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-left text-black min-h-fit">
         <thead class="uppercase bg-[#EDEDED]">
@@ -245,7 +243,7 @@ export default {
       const banyakData = this.data.length
       const maxPage = banyakData / this.perPage
       if (this.currentPage >= maxPage) {
-        return
+        return maxPage
       } else {
         this.currentPage += 1
       }
@@ -253,7 +251,7 @@ export default {
 
     downNumber() {
       if (this.currentPage === 1) {
-        return
+        return this.currentPage
       } else {
         this.currentPage -= 1
       }

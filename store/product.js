@@ -169,6 +169,7 @@ export const state = () => ({
   ],
 
   product: [],
+  id: null,
 })
 
 export const getter = {
@@ -181,6 +182,10 @@ export const mutations = {
   setProduct(state, param) {
     state.product = param
   },
+
+  setId(state, param) {
+    state.id = param
+  },
 }
 
 export const actions = {
@@ -192,5 +197,9 @@ export const actions = {
     console.log(response.data)
 
     store.commit('setProduct', response.data.data)
+  },
+
+  getId(store, param) {
+    store.commit('setId', param.id)
   },
 }

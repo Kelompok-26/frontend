@@ -16,7 +16,7 @@
           :index="idx"
           :poin="paket.point"
           :backgroundImage="'https://ik.imagekit.io/drigoalexander/paketdata__pyAZJU4et.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375508716'"
-          v-on:toDetail="toDetail(idx)"
+          v-on:toDetail="toDetail(paket.id)"
         />
       </div>
     </div>
