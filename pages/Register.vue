@@ -1079,7 +1079,7 @@ export default {
     submit() {
       axios
         .post(
-          'https://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/users',
+          'http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/users',
           {
             name: this.username,
             email: this.email,
