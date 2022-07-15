@@ -190,8 +190,12 @@ export const mutations = {
 
 export const actions = {
   async fetchProduct(store) {
+    const httpsAgent = new https.Agent({ rejectUnauthorized: false })
     const response = await this.$axios.get(
-      'https://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/products'
+      'http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/products',
+      {
+        httpsAgent,
+      }
     )
 
     console.log(response.data)
