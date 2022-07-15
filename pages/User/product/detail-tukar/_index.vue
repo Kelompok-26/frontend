@@ -45,29 +45,56 @@
 
         <div class="flex flex-col gap-4 w-full px-10">
           <input
+            :disabled="loading"
             v-model="nohp"
             type="text"
             class="w-full rounded-md px-4 py-2 border-2 border-gray-500 focus:border-[#145374] form-input"
             placeholder="No. Hp"
           />
 
-          <select
-            placeholder="Provider"
-            id="provider"
-            class="w-full rounded-md px-4 py-2 border-2 border-gray-500 form-select focus:border-[#145374]"
+          <div
+            class="w-full rounded-md px-4 py-2 border-2 border-gray-500 focus:border-[#145374]"
           >
-            <option value="" disabled selected>Provider</option>
-            <option value="Indosat">Indosat</option>
-            <option value="Telkomsel">Telkomsel</option>
-            <option value="AXIS">AXIS</option>
-            <option value="XL Axiata">XL Axiata</option>
-            <option value="3 (Three)">3 (Three)</option>
-          </select>
+            {{ product[0].provider_name }}
+          </div>
         </div>
 
+        <div class="flex justify-start items-center px-10 -mt-10">
+          <button
+            :class="{
+              'scale-0': !loading,
+              'scale-100': loading,
+            }"
+            type="button"
+            class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-[#145374] transition ease-in-out duration-300"
+          >
+            <svg
+              class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            Processing...
+          </button>
+        </div>
         <div class="flex items-center justify-center w-full">
           <div
             class="w-auto px-4 py-2 bg-[#145374] rounded-md text-white cursor-pointer"
+            @click="postTransaction"
           >
             Submit
           </div>
@@ -90,16 +117,47 @@
           <div class="w-full flex items-center font-semibold">
             <div class="">
               <div
+                v-if="product[0].type_product === 'Paket Data'"
                 class="w-44 aspect-[1.2/1] bg-center bg-cover relative"
                 :style="{
                   'background-image': `url(https://ik.imagekit.io/drigoalexander/paketdata__pyAZJU4et.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375508716)`,
                 }"
               ></div>
+
+              <div
+                v-if="product[0].type_product === 'E-Money'"
+                class="w-44 aspect-[1.2/1] bg-center bg-cover relative"
+                :style="{
+                  'background-image': `url(https://ik.imagekit.io/drigoalexander/emoney_LVf6ujW1Q.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375609772)`,
+                }"
+              ></div>
+
+              <div
+                v-if="product[0].type_product === 'Cashout'"
+                class="w-44 aspect-[1.2/1] bg-center bg-cover relative"
+                :style="{
+                  'background-image': `url(https://ik.imagekit.io/drigoalexander/cashout_UhMhjSBXXV.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655375554772)`,
+                }"
+              ></div>
+
+              <div
+                v-if="product[0].type_product === 'Pulsa'"
+                class="w-44 aspect-[1.2/1] bg-center bg-cover relative"
+                :style="{
+                  'background-image': `url(https://ik.imagekit.io/drigoalexander/pulsa_Dgic1XZnM.png?ik-sdk-version=javascript-1.4.3&updatedAt=1655300119237)`,
+                }"
+              ></div>
             </div>
 
             <div class="flex flex-col flex-1 items-end text-white px-10">
-              <div><h4 class="font-bold text-5xl">Paket Data</h4></div>
-              <div><h4 class="font-bold text-5xl">1 GB</h4></div>
+              <div class="flex flex-col justify-end items-end gap-3">
+                <h4 class="font-semibold text-3xl">
+                  {{ product[0].type_product }}
+                </h4>
+                <h4 class="text-5xl font-bold">
+                  {{ product[0].product_name }}
+                </h4>
+              </div>
             </div>
           </div>
         </div>
@@ -108,19 +166,25 @@
 
       <!-- Paket Data 1 GB -->
       <div class="w-full flex flex-col gap-6">
-        <p class="flex justify-center text-2xl font-bold">Paket Data 1 GB</p>
+        <p class="flex justify-center text-2xl font-bold">
+          {{ product[0].type_product }}
+          <span class="pl-2">{{ product[0].product_name }}</span>
+        </p>
 
         <!-- Poin -->
         <div class="flex flex-col bg-white px-5 py-5 rounded-2xl">
           <div class="w-full flex flex-col gap-4 font-semibold">
             <div class="flex justify-between">
               <div>Poin</div>
-              <div>10 Poin</div>
+              <div>{{ product[0].point }}</div>
             </div>
-
+            <div class="flex justify-between">
+              <div>Stok</div>
+              <div>{{ product[0].stock }}</div>
+            </div>
             <div class="flex justify-between font-bold">
-              <div>Berlaku sampai dengan</div>
-              <div>30 Juli 2022</div>
+              <div>Provider</div>
+              <div>{{ product[0].provider_name }}</div>
             </div>
           </div>
         </div>
@@ -129,9 +193,11 @@
         <div class="flex flex-col bg-white px-5 py-5 rounded-2xl">
           <p class="font-semibold py-3">Detail</p>
           <p>
-            Paket Data 1GB ini merupakan salah satu penawaran untuk kamu dapat
-            tukarkan dengan poin yang kamu milliki. Klik konfirmasi untuk
-            mengisi form penukaran Paket Data 1GB ini.
+            <span>{{ product[0].type_product }} </span>
+            <span class="font-bold">{{ product[0].product_name }}</span> ini
+            merupakan salah satu penawaran untuk kamu dapat tukarkan dengan poin
+            yang kamu milliki. Klik konfirmasi untuk mengisi form penukaran
+            <span class="font-bold">{{ product[0].product_name }}</span> ini.
           </p>
         </div>
 
@@ -176,16 +242,28 @@
 export default {
   data() {
     return {
-      idx: '',
+      index: '',
       nohp: '',
       provider: '',
       isDialog: false,
+      loading: null,
+      tokens: '',
+      error: false,
     }
   },
 
-  created() {
-    this.idx = this.$route.params.index
+  computed: {
+    product() {
+      return this.$store.state.product.product.filter((el) => {
+        return el.id === this.index
+      })
+    },
   },
+  created() {
+    this.index = this.$route.params.index
+    this.tokens = this.$store.state.userAuth.token
+  },
+
   methods: {
     redirectBenefit(objBenefit) {
       this.$router.push({
@@ -194,6 +272,34 @@ export default {
       })
 
       console.log(objBenefit)
+    },
+
+    postTransaction() {
+      this.loading = true
+
+      const postTrans = {
+        number: this.nohp,
+        product_id: this.index,
+      }
+      const config = {
+        method: 'post',
+        url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/user/${this.index}/`,
+        headers: {
+          Authorization: `Bearer ${this.tokens}`,
+        },
+        data: postTrans,
+        timeout: 2000,
+      }
+
+      this.$axios(config)
+        .then((res) => console.log(res))
+        .catch((error) => {
+          this.error = true
+          console.log(error)
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
   },
 }

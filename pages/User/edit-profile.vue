@@ -5,7 +5,7 @@
     <div class="flex flex-col gap-20">
       <h1 class="text-3xl font-semibold">Edit Profile</h1>
       <div class="flex flex-col justify-center items-center w-full gap-12">
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-6 justify-center items-center">
           <div class="w-32 aspect-square bg-gray-500 rounded-full relative">
             <div class="absolute right-2 bottom-0 z-10">
               <svg
@@ -27,9 +27,9 @@
               </svg>
             </div>
           </div>
-          <div class="flex flex-col gap-2">
-            <h4 class="text-lg font-semibold">Indah Cahya</h4>
-            <p>@indahcahya</p>
+          <div class="flex flex-col gap-2 text-center">
+            <h4 class="text-lg font-semibold">{{ User.name }}</h4>
+            <p>{{ User.email }}</p>
           </div>
         </div>
 
@@ -37,6 +37,7 @@
           <div>
             <label for="Email">Email</label>
             <input
+              v-model="email"
               type="text"
               class="bg-[#d9d9d9] w-full rounded-md py-2 px-6"
             />
@@ -44,6 +45,7 @@
           <div>
             <label for="Username">Username</label>
             <input
+              v-model="username"
               type="text"
               class="bg-[#d9d9d9] w-full rounded-md py-2 px-6"
             />
@@ -53,12 +55,14 @@
             <label for="PhoneNumber">Phone Number</label>
             <input
               type="text"
+              v-model="phoneNumber"
               class="bg-[#d9d9d9] w-full rounded-md py-2 px-6"
             />
           </div>
           <div>
             <label for="AccountNumber">Account Number</label>
             <input
+              v-model="accountNumber"
               type="text"
               class="bg-[#d9d9d9] w-full rounded-md py-2 px-6"
             />
@@ -66,10 +70,21 @@
           <div>
             <label for="DateofBirth">Date of birth</label>
             <input
-              type="date"
+              v-model="dateofbirth"
+              type="text"
               class="bg-[#d9d9d9] w-full rounded-md py-2 px-6"
             />
           </div>
+
+          <div>
+            <label for="DateofBirth">Gender</label>
+            <input
+              v-model="gender"
+              type="text"
+              class="bg-[#d9d9d9] w-full rounded-md py-2 px-6"
+            />
+          </div>
+
           <div>
             <label for="Password">Password</label>
             <input
@@ -79,7 +94,7 @@
           </div>
           <div class="flex items-center justify-center">
             <button
-              type="submit"
+              @click.prevent="editProfile"
               class="flex items-center justify-center bg-[#145374] px-4 py-2 text-white rounded-md"
             >
               Simpan
@@ -96,5 +111,64 @@
 <script>
 export default {
   layout: 'privacy',
+  data() {
+    return {
+      email: '',
+      username: '',
+      phoneNumber: '',
+      accountNumber: '',
+      dateofbirth: '',
+      password: '',
+      gender: '',
+      User: {},
+      tokens: '',
+      id: Number,
+    }
+  },
+
+  methods: {
+    editProfile() {
+      const dataProfile = {
+        email: this.email,
+        name: this.username,
+        phone_number: this.phoneNumber,
+        date_of_birth: this.dateofbirth,
+        password: this.password,
+        account_number: this.accountNumber,
+        gender: this.gender,
+      }
+      const config = {
+        method: 'put',
+        url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/users/update/${this.id}`,
+        headers: {
+          Authorization: `Bearer ${this.tokens}`,
+        },
+        data: dataProfile,
+      }
+
+      this.$axios(config).then((res) => console.log(res))
+
+      this.$store.dispatch('userAuth/fetchUser', {
+        id: this.id,
+        token: this.tokens,
+      })
+
+      this.$router.push('/')
+      // window.location.reload(true)
+    },
+  },
+
+  created() {
+    this.id = this.$store.state.userAuth.User.id
+    this.tokens = this.$store.state.userAuth.token
+    this.User = this.$store.state.userAuth.User
+    this.email = this.$store.state.userAuth.User.email
+    this.username = this.$store.state.userAuth.User.name
+    this.phoneNumber = this.$store.state.userAuth.User.phone_number
+    this.dateofbirth = this.$store.state.userAuth.User.date_of_birth
+    this.password = this.$store.state.userAuth.User.password
+    this.accountNumber = this.$store.state.userAuth.User.account_number
+    this.gender = this.$store.state.userAuth.User.gender
+  },
 }
 </script>
