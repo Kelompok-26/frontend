@@ -57,7 +57,7 @@ const actions = {
     store.commit('setisAuth', true)
     store.commit('setToken', response.data.User)
 
-    this.$router.push('/')
+    this.$router.push('/').catch(() => {})
   },
 
   async fetchUser(store, param) {
