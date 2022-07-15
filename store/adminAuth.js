@@ -30,7 +30,7 @@ const actions = {
 
   async fetchLogin(store, param) {
     const response = await this.$axios.post(
-      'http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/admin/login',
+      'https://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/admin/login',
       {
         email: param.email,
         password: param.password,
