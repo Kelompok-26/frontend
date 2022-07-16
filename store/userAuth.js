@@ -36,7 +36,7 @@ const actions = {
 
   async fetchLogin(store, param) {
     const response = await this.$axios.post(
-      'https://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/user/login',
+      'http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/user/login',
       {
         email: param.email,
         password: param.password,
@@ -63,7 +63,7 @@ const actions = {
   async fetchUser(store, param) {
     const config = {
       method: 'get',
-      url: `https://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/users/${param.id}`,
+      url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/users/${param.id}`,
       headers: {
         Authorization: `Bearer ${param.token}`,
       },

@@ -1,4 +1,4 @@
-import https from 'https'
+// import https from 'https'
 export const state = () => ({
   paketData: [
     {
@@ -191,12 +191,9 @@ export const mutations = {
 
 export const actions = {
   async fetchProduct(store) {
-    const httpsAgent = new https.Agent({ rejectUnauthorized: false })
+    // const httpsAgent = new https.Agent({ rejectUnauthorized: false })
     const response = await this.$axios.get(
-      'https://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/products',
-      {
-        httpsAgent,
-      }
+      'http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/products'
     )
 
     console.log(response.data)

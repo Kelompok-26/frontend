@@ -283,7 +283,7 @@ export default {
       }
       const config = {
         method: 'post',
-        url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/user/${this.index}/`,
+        url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/user/${this.index}/transaction`,
         headers: {
           Authorization: `Bearer ${this.tokens}`,
         },
