@@ -130,8 +130,8 @@
           </svg>
         </div>
         <div class="flex flex-col gap-2 items-start justify-start">
-          <p class="font-bold text-2xl">57</p>
-          <p class="text-md">Total Pengguna <br />C-Loyal</p>
+          <p class="font-bold text-2xl">{{getAllTransaction}}</p>
+          <p class="text-md">Total Transaksi <br />C-Loyal</p>
         </div>
       </div>
 
@@ -345,15 +345,34 @@
 <script>
 import CardAdmin from '../../components/CardAdmin.vue'
 export default {
+  components: { CardAdmin },
+  layout: 'admin',
   data() {
     return {
       Notelephone: '',
       username: '',
       password: '',
+
     }
   },
-  layout: 'admin',
-  components: { CardAdmin },
+
+    computed:{
+      getAllTransaction(){
+        return this.$store.state.adminDashboard.AllTran
+      },
+    },
+  created(){
+      const tokens = this.$store.state.adminAuth.token
+      this.type_product = this.$store.state.adminProduct.type
+      this.$store.dispatch('adminDashboard/getAllTransaction', {
+        token: tokens
+      })
+  },
+
+
+  methods(){
+
+  }
 }
 </script>
 

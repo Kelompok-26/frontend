@@ -34,8 +34,8 @@
         <div class="flex justify-between items-center">
           <label class="text-black" v-if="type_product === 'Paket Data'">Provider</label>
           <label class="text-black" v-if="type_product === 'Pulsa'">Provider</label>
-          <label class="text-black" v-if="type_product === 'Cashout'">Nominal</label>
-          <label class="text-black" v-if="type_product === 'E-Money'">Nominal</label>
+          <label class="text-black" v-if="type_product === 'Cashout'">Provider</label>
+          <label class="text-black" v-if="type_product === 'E-Money'">Provider</label>
           
           <div class="flex flex-col" v-if="type_product === 'Paket Data'">
             <div
@@ -126,13 +126,13 @@
           </div>
           
           <input v-if="type_product === 'Cashout'"
-            v-model="nominal"
+            v-model="cashoutName"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
 
           <input v-if="type_product === 'E-Money'"
-            v-model="nominal"
+            v-model="emoneyName"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
@@ -143,8 +143,8 @@
         <div class="flex justify-between items-center">
           <label class="text-black" v-if="type_product === 'Paket Data'">Paket Data</label>
           <label class="text-black" v-if="type_product === 'Cashout'">Cashout</label>
-          <label class="text-black" v-if="type_product === 'E-Money'">E-Money</label>
-          <label class="text-black" v-if="type_product === 'Pulsa'">Pulsa</label>
+          <label class="text-black" v-if="type_product === 'E-Money'">Voucher</label>
+          <label class="text-black" v-if="type_product === 'Pulsa'">Voucher</label>
           
           
 
@@ -235,21 +235,25 @@
           </div>
 
           <input v-if="type_product === 'Cashout'"
+            v-model="voucher"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
 
           <input v-if="type_product === 'E-Money'"
+            v-model="voucher"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
         </div>
 
+
+
         <!-- Harga -->
         <div class="flex justify-between items-center" v-if="type_product === 'Paket Data' ">
           <label class="text-black">Harga</label>
           <input
-            v-model="harga"
+            v-model.number="harga"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
@@ -258,7 +262,25 @@
         <div class="flex justify-between items-center" v-if="type_product === 'Pulsa' ">
           <label class="text-black">Harga</label>
           <input
-            v-model="harga"
+            v-model.number="harga"
+            type="text"
+            class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
+          />
+        </div>
+
+        <div class="flex justify-between items-center" v-if="type_product === 'Cashout' ">
+          <label class="text-black">Nominal</label>
+          <input
+            v-model.number="nominal"
+            type="text"
+            class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
+          />
+        </div>
+
+          <div class="flex justify-between items-center" v-if="type_product === 'E-Money' ">
+          <label class="text-black">Nominal</label>
+          <input
+            v-model.number="nominal"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
@@ -269,7 +291,7 @@
         <div class="flex justify-between items-center" v-if="type_product === 'Paket Data'">
             <label class="text-black">Stok</label>
             <input 
-              v-model="stok"
+              v-model.number="stok"
               type="text"
               class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
             />
@@ -278,7 +300,7 @@
         <div class="flex justify-between items-center" v-if="type_product === 'Pulsa'">
             <label class="text-black">Stok</label>
             <input
-              v-model="stok"
+              v-model.number="stok"
               type="text"
               class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
             />
@@ -287,7 +309,7 @@
         <div class="flex justify-between items-center"  v-if="type_product === 'Cashout'">
           <label class="text-black">Stok</label>
           <input
-            v-model="stok"
+            v-model.number="stok"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
@@ -296,7 +318,7 @@
         <div class="flex justify-between items-center"  v-if="type_product === 'E-Money'">
           <label class="text-black">Stok</label>
           <input
-            v-model="stok"
+            v-model.number="stok"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
@@ -307,7 +329,7 @@
         <div class="flex justify-between items-center" v-if="type_product === 'Paket Data'">
             <label class="text-black">Poin</label>
             <input 
-              v-model="poin"
+              v-model.number="poin"
               type="text"
               class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
             />
@@ -316,7 +338,7 @@
         <div class="flex justify-between items-center" v-if="type_product === 'Pulsa'">
             <label class="text-black">Poin</label>
             <input
-              v-model="poin"
+              v-model.number="poin"
               type="text"
               class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
             />
@@ -325,7 +347,7 @@
         <div class="flex justify-between items-center"  v-if="type_product === 'Cashout'">
           <label class="text-black">Poin</label>
           <input
-            v-model="poin"
+            v-model.number="poin"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
@@ -334,7 +356,7 @@
         <div class="flex justify-between items-center"  v-if="type_product === 'E-Money'">
           <label class="text-black">Poin</label>
           <input
-            v-model="poin"
+            v-model.number="poin"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
@@ -347,7 +369,7 @@
       <!-- Button -->
       <div class="w-1/2 flex pb-5 justify-end">
         <div v-if="type_product === 'Paket Data'" class="w-96 flex justify-between">
-          <div @click="addStockPaketData" type="submit" class="cursor-pointer bg-[#145374] text-white px-5 py-3 rounded-md">
+          <div @click.prevent="postProductPaketData" class="cursor-pointer bg-[#145374] text-white px-5 py-3 rounded-md">
             Simpan
           </div>
           <button class="bg-[#145374] text-white px-8 py-3 rounded-md">
@@ -356,7 +378,7 @@
         </div>
 
         <div v-if="type_product === 'Pulsa'" class="w-96 flex justify-between">
-          <div @click="addStockPulsa" type="submit" class="bg-[#145374] cursor-pointer text-white px-5 py-3 rounded-md">
+          <div @click.prevent="postProductPulsa" class="bg-[#145374] cursor-pointer text-white px-5 py-3 rounded-md">
             Simpan
           </div>
           <button class="bg-[#145374] text-white px-8 py-3 rounded-md">
@@ -364,7 +386,7 @@
           </button>
         </div>
         <div v-if="type_product === 'Cashout'" class="w-96 flex justify-between">
-          <div @click="addStockCashout" type="submit" class="bg-[#145374] cursor-pointer text-white px-5 py-3 rounded-md">
+          <div @click.prevent="postProductCashout" class="bg-[#145374] cursor-pointer text-white px-5 py-3 rounded-md">
             Simpan
           </div>
           <button class="bg-[#145374] text-white px-8 py-3 rounded-md">
@@ -372,7 +394,7 @@
           </button>
         </div>
         <div v-if="type_product === 'E-Money'" class="w-96 flex justify-between">
-          <div @click="addStockEmoney" type="submit" class="bg-[#145374] cursor-pointer text-white px-5 py-3 rounded-md">
+          <div @click.prevent="postProductEmoney" class="bg-[#145374] cursor-pointer text-white px-5 py-3 rounded-md">
             Simpan
           </div>
           <button @click="this.$router.back()" class="bg-[#145374] text-white px-8 py-3 rounded-md">
@@ -399,18 +421,22 @@ export default {
       pilih: 'TELKOMSEL',
       pilih1: '1 GB',
       pilih2: 'Rp 10.000',
+      cashoutName: '',
+      emoneyName: '',
       index: null,
       index1: null,
       index2: null,
       provider: [{name: 'TELKOMSEL'}, {name: 'TRI'}, {name: 'INDOSAT'}, {name: 'XL'}],
       paketData: [{paket: '1 GB'}, {paket: '2 GB'}, {paket: '5 GB'}, {paket: '10 GB'}, {paket: '20 GB'}],
       pulsa: [{nominal: 'Rp 10.000'}, {nominal: 'Rp 15.000'}, {nominal: 'Rp 50.000'}, {nominal: 'Rp 100.000'}, {nominal: 'Rp 200.000'}],
-      harga: '',
-      nominal: '',
+      harga: null,
+      nominal: null,
+      voucher: '',
       id: '',
-      stok: '',
-      type_product: "",
-      poin: ''
+      stok: null,
+      type_product: '',
+      poin: null,
+      tokens: ''
       
     }
   },
@@ -426,11 +452,59 @@ export default {
     },
   },
   created(){
-    
+    this.tokens = this.$store.state.adminAuth.token
     this.type_product = this.$store.state.adminProduct.type
 
   },
   methods: {
+    postProductPaketData(){
+      this.$store.dispatch('adminProduct/createProduct', {
+         tipe: this.type_product,
+         name: this.pilih1,
+         provider: this.pilih,
+         nominal: this.harga,
+         poin: this.poin,
+         stok: this.stok,
+         token: this.tokens
+
+      })
+    },
+    postProductPulsa(){
+      this.$store.dispatch('adminProduct/createProduct', {
+        tipe: this.type_product,
+         name: this.pilih2,
+         provider: this.pilih,
+         nominal: this.harga,
+         poin: this.poin,
+         stok: this.stok,
+         token: this.tokens
+      })
+    },
+    postProductCashout(){
+      this.$store.dispatch('adminProduct/createProduct', {
+        tipe: this.type_product,
+        name: this.voucher,
+        provider: this.cashoutName,
+        nominal: this.nominal,
+        poin: this.poin,
+        stok: this.stok,
+        token: this.tokens
+      })
+    },
+    postProductEmoney(){
+      this.$store.dispatch('adminProduct/createProduct', {
+        tipe: this.type_product,
+        name: this.voucher,
+        provider: this.emoneyName,
+        nominal: this.nominal,
+        poin: this.poin,
+        stok: this.stok,
+        token: this.tokens
+      })
+    },
+
+
+
     async addStockPaketData(){
       await this.$axios.post('ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/products', {
         type_product: this.type_product,
@@ -471,6 +545,7 @@ export default {
         id: this.id,
         stock: this.stok,
         point: this.poin,
+        
       }).then(response => console.log(response))
       console.warn("function called", this.nominal, this.harga, this.stok, this.poin);
       console.warn(api);
