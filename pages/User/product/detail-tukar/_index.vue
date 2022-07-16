@@ -249,6 +249,7 @@ export default {
       loading: null,
       tokens: '',
       error: false,
+      idUser: null,
     }
   },
 
@@ -260,6 +261,7 @@ export default {
     },
   },
   created() {
+    this.idUser = this.$store.state.userAuth.id
     this.index = this.$route.params.index
     this.tokens = this.$store.state.userAuth.token
   },
@@ -283,7 +285,7 @@ export default {
       }
       const config = {
         method: 'post',
-        url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/user/${this.index}/transaction`,
+        url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/user/${this.idUser}/transaction`,
         headers: {
           Authorization: `Bearer ${this.tokens}`,
         },

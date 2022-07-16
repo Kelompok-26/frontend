@@ -192,7 +192,9 @@
           <NuxtLink to="/User/privacy-policy">
             <span class="cursor-pointer">Privacy Policy</span>
           </NuxtLink>
-          <span class="cursor-pointer">Terms of Service</span>
+          <Nuxtlink to="/User/syarat-ketentuan">
+            <span class="cursor-pointer">Terms of Service</span>
+          </Nuxtlink>
         </div>
 
         <hr class="w-full border-b-1 border-gray-700" />
