@@ -167,9 +167,10 @@
         </NuxtLink>
 
         <div
-          class="flex w-full cursor-pointer items-center gap-4 p-2 rounded-lg bg-[#145374] text-white active:text-white group"
+          class="flex w-full cursor-pointer items-center gap-4 p-2 rounded-lg active:bg-[#145374] text-black active:text-white group"
         >
           <svg
+            class="stroke-black group-active:stroke-white"
             width="26"
             height="24"
             viewBox="0 0 26 24"
@@ -178,13 +179,12 @@
           >
             <path
               d="M19.25 17L24.25 12M24.25 12L19.25 7M24.25 12H6.75M14.25 17V18.25C14.25 19.2446 13.8549 20.1984 13.1517 20.9017C12.4484 21.6049 11.4946 22 10.5 22H5.5C4.50544 22 3.55161 21.6049 2.84835 20.9017C2.14509 20.1984 1.75 19.2446 1.75 18.25V5.75C1.75 4.75544 2.14509 3.80161 2.84835 3.09835C3.55161 2.39509 4.50544 2 5.5 2H10.5C11.4946 2 12.4484 2.39509 13.1517 3.09835C13.8549 3.80161 14.25 4.75544 14.25 5.75V7"
-              stroke="white"
+              stroke=""
               stroke-width="2.5"
               stroke-linecap="round"
               stroke-linejoin="round"
             />
           </svg>
-
           <span @click="logout">Logout</span>
         </div>
       </div>

@@ -31,7 +31,6 @@
     <div class="w-1/2 flex items-center justify-center bg-[#145374] text-white">
       <form action="" class="flex flex-col gap-20 items-start w-96">
         <h2 class="text-3xl font-semibold">Welcome! <br />Login to continue</h2>
-        <p class="text-white">{{ getLevel }}</p>
 
         <div class="flex flex-col gap-4 w-full">
           <div class="flex flex-col gap-2">

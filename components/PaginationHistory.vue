@@ -25,7 +25,7 @@
               {{ val.id }}
             </th>
             <td class="px-12 py-4">{{ val.user.name }}</td>
-            <td class="px-12 py-4">{{ val.created_at }}</td>
+            <td class="px-12 py-4">{{ val.created_at.substring(0, 9) }}</td>
             <td class="px-12 py-4">{{ val.number }}</td>
             <td class="px-12 py-4">
               - <span>{{ val.product.point }}</span>
