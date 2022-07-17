@@ -2,6 +2,7 @@
   <!-- Start Content -->
   <div class="w-full px-10 flex flex-col gap-6">
     <span class="text-[33px] font-semibold">Riwayat Penggunaan Poin</span>
+
     <div class="items-center justify-evenly gap-6"></div>
     <!-- {{ trans }} -->
     <!-- Start Riwayat Poin -->

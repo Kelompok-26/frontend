@@ -1,7 +1,6 @@
 <template>
   <div class="w-full px-10 flex flex-col gap-6">
     <span class="text-2xl font-bold">Data Users</span>
-
     <div class="w-full flex justify-between gap-5">
       <div class="flex justify-evenly relative rounded">
         <button class="absolute inset-y-0 left-2">
@@ -27,6 +26,7 @@
       </div>
 
       <button
+        @click="refresh"
         class="bg-[#145374] flex items-center gap-2 text-white px-5 py-3 rounded-md"
       >
         <svg
@@ -89,9 +89,9 @@
 
     <!-- Start Pagination -->
     <div
-      class="w-full px-10 flex flex-col bg-white border-t-[10px] border-[#145374] rounded-md"
+      class="w-full px-10 flex flex-col border-t-[10px] border-[#145374] rounded-md"
     >
-      <Pagination />
+      <Pagination :User="getUser" :tokens="tokens" />
     </div>
     <!-- End of Pagination -->
   </div>
@@ -99,5 +99,29 @@
 <script>
 export default {
   layout: 'admin',
+  data() {
+    return {
+      tokens: '',
+    }
+  },
+
+  computed: {
+    getUser() {
+      return this.$store.state.adminUser.adminUser
+    },
+  },
+  created() {
+    this.tokens = this.$store.state.adminAuth.token
+    const tokens = this.$store.state.adminAuth.token
+    this.$store.dispatch('adminUser/getAllUser', {
+      token: tokens,
+    })
+  },
+
+  methods: {
+    refresh() {
+      this.$nuxt.refresh()
+    },
+  },
 }
 </script>

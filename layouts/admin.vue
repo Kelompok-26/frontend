@@ -1,14 +1,14 @@
 <template>
   <div
-    class="w-full h-auto mx-auto flex max-w-screen-2xl font-poppins bg-gray-200"
+    class="w-full h-full min-h-screen mx-auto flex max-w-screen-2xl font-poppins bg-gray-200"
   >
-  <div class="flex justify-evenly -ml-[150px] w-full items-start"> 
-    <Sidebar class="" />
-    <div class="flex flex-col">
-      <ProfileAdmin/>
-      <Nuxt />
+    <div class="flex justify-between w-full items-start">
+      <Sidebar class="" />
+      <div class="flex flex-col w-full">
+        <ProfileAdmin />
+        <Nuxt />
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
