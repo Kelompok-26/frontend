@@ -119,9 +119,19 @@ export default {
     }
   },
 
-  created() {
-    this.temp = Object.assign([], this.User)
-  },
+    computed: {
+      spliceData() {
+        if (this.currentPage === 1) {
+          return this.temp.slice(0, 7)
+        } else {
+          return this.temp.slice((this.currentPage - 1) * 7, this.currentPage * 7)
+        }
+      },
+      getTotalPage() {
+        const banyakData = this.User.length
+        return Math.ceil(banyakData / this.perPage)
+      },
+    },
   watch: {
     currentPage() {
       if (this.currentPage === 1) {
@@ -131,19 +141,9 @@ export default {
       }
     },
   },
-  computed: {
-    spliceData() {
-      if (this.currentPage === 1) {
-        return this.temp.slice(0, 7)
-      } else {
-        return this.temp.slice((this.currentPage - 1) * 7, this.currentPage * 7)
-      }
+    created() {
+      this.temp = Object.assign([], this.User)
     },
-    getTotalPage() {
-      const banyakData = this.User.length
-      return Math.ceil(banyakData / this.perPage)
-    },
-  },
   methods: {
     deleteUser(id) {
       const config = {

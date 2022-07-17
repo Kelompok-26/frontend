@@ -91,7 +91,7 @@
     <div
       class="w-full px-10 flex flex-col bg-white border-t-[10px] border-[#145374] rounded-md"
     >
-      pagination
+      <PaginationPoin :User="getStok" />
     </div>
     <!-- End of Pagination -->
   </div>
@@ -102,8 +102,26 @@ export default {
   data() {
     return {
       product: '',
+      tokens: ''
     }
   },
+
+  computed:{
+    getStok(){
+      return this.$store.state.adminStock.Stok
+    }
+  },
+
+  created() {
+    this.tokens = this.$store.state.adminAuth.token
+    const tokens = this.$store.state.adminAuth.token
+    this.product = this.$route.params.typeProduct
+    this.$store.dispatch('adminStock/getAllStok', {
+      token: tokens,
+    })
+    
+  },
+
 
   methods: {
     inputContext(){
@@ -115,8 +133,6 @@ export default {
       })
     }
   },
-  created() {
-    this.product = this.$route.params.typeProduct
-  },
+
 }
 </script>
