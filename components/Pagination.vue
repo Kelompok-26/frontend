@@ -182,6 +182,7 @@ export default {
   },
   methods: {
     deleteUser(id) {
+      console.log(id)
       const config = {
         method: 'DELETE',
         url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/users/${id}`,

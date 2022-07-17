@@ -1,7 +1,5 @@
 <template>
   <div class="w-full px-10 flex flex-col gap-6">
-    <span class="text-2xl font-bold">{{ product }}</span>
-
     <div class="w-full flex justify-between gap-5">
       <div class="flex justify-evenly relative rounded">
         <button class="absolute inset-y-0 left-2">
@@ -26,8 +24,8 @@
         />
       </div>
 
-      <button @click="inputContext
-      "
+      <button
+        @click="inputContext"
         class="bg-[#ee6f57] flex items-center gap-2 text-white px-5 py-3 rounded-md"
       >
         <svg
@@ -89,9 +87,14 @@
 
     <!-- Start Pagination -->
     <div
-      class="w-full px-10 flex flex-col bg-white border-t-[10px] border-[#145374] rounded-md"
+      class="w-full px-10 flex flex-col border-t-[10px] border-[#145374] rounded-md"
     >
-      <PaginationPoin :User="getStok" />
+      <PaginationPoin
+        :User="getProduk"
+        :panjang="getPanjang"
+        :tipe="product"
+        :tokens="tokens"
+      />
     </div>
     <!-- End of Pagination -->
   </div>
@@ -102,37 +105,64 @@ export default {
   data() {
     return {
       product: '',
-      tokens: ''
+      tokens: null,
     }
   },
 
-  computed:{
-    getStok(){
+  computed: {
+    getStok() {
       return this.$store.state.adminStock.Stok
-    }
+    },
+
+    getPanjang() {
+      if (this.product === 'Paket Data') {
+        return this.$store.state.adminStock.PanjangPaket
+      } else if (this.product === 'Pulsa') {
+        return this.$store.state.adminStock.PanjangPulsa
+      } else if (this.product === 'Cashout') {
+        return this.$store.state.adminStock.PanjangCash
+      } else if (this.product === 'E-Money') {
+        return this.$store.state.adminStock.PanjangEmoney
+      } else return 0
+    },
+    getProduk() {
+      if (this.product === 'Paket Data') {
+        return this.$store.state.adminStock.Paket
+      } else if (this.product === 'Pulsa') {
+        return this.$store.state.adminStock.Pulsa
+      } else if (this.product === 'Cashout') {
+        return this.$store.state.adminStock.Cash
+      } else if (this.product === 'E-Money') {
+        return this.$store.state.adminStock.emoney
+      } else return false
+    },
   },
 
   created() {
     this.tokens = this.$store.state.adminAuth.token
-    const tokens = this.$store.state.adminAuth.token
     this.product = this.$route.params.typeProduct
-    this.$store.dispatch('adminStock/getAllStok', {
-      token: tokens,
-    })
-    
-  },
-
-
-  methods: {
-    inputContext(){
-      this.$router.push({
-        name: 'admin-typeProduct-input',
-        params: {
-          typeProduct: this.product
-        }
-      })
+    const produk = this.$route.params.typeProduct
+    // const tipe = this.$route.params.typeProduct
+    if (produk === 'Paket Data') {
+      this.$store.dispatch('adminStock/getAllStokPaket')
+    } else if (produk === 'Pulsa') {
+      this.$store.dispatch('adminStock/getAllStokPulsa')
+    } else if (produk === 'Cashout') {
+      this.$store.dispatch('adminStock/getAllStokCash')
+    } else if (produk === 'E-Money') {
+      this.$store.dispatch('adminStock/getAllStokEmoney')
     }
   },
 
+  methods: {
+    inputContext() {
+      this.$router.push({
+        name: 'admin-typeProduct-input',
+        params: {
+          typeProduct: this.product,
+        },
+      })
+    },
+  },
 }
 </script>

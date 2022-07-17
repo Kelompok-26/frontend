@@ -4,7 +4,7 @@
   >
     <div class="flex justify-between w-full items-start">
       <Sidebar class="" />
-      <div class="flex flex-col w-full">
+      <div class="flex flex-col w-full gap-10">
         <ProfileAdmin />
         <Nuxt />
       </div>

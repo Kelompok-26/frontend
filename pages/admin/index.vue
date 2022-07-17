@@ -38,7 +38,7 @@
             <input
               id=""
               v-model="email"
-              type="text"
+              type="email"
               name="email"
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
             />
@@ -48,7 +48,7 @@
             <label for="password">Password</label>
             <input
               v-model="password"
-              type="text"
+              type="password"
               name="password"
               id=""
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
