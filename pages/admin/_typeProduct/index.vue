@@ -155,6 +155,7 @@ export default {
   },
 
   methods: {
+    
     inputContext() {
       this.$router.push({
         name: 'admin-typeProduct-input',

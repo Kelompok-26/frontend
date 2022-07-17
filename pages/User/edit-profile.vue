@@ -139,7 +139,7 @@ export default {
       }
       const config = {
         method: 'put',
-        url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/users/update/${this.id}`,
+        url: `http://ec2-54-160-45-255.compute-1.amazonaws.com:8080/v1/users/${this.id}/update`,
         headers: {
           Authorization: `Bearer ${this.tokens}`,
         },

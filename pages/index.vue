@@ -9781,6 +9781,7 @@ export default {
     },
 
     pulsa() {
+      
       return this.$store.state.product.product.filter((el) => {
         return el.type_product === 'Pulsa'
       })

@@ -75,7 +75,7 @@
         <div class="flex justify-between items-center">
           <label class="text-black">Nominal</label>
           <input
-            v-model="nominal"
+            v-model.number="nominal"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
@@ -84,7 +84,7 @@
         <div class="flex justify-between items-center">
           <label class="text-black">Point</label>
           <input
-            v-model="point"
+            v-model.number="point"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />
@@ -93,7 +93,7 @@
         <div class="flex justify-between items-center">
           <label class="text-black">Stock</label>
           <input
-            v-model="stock"
+            v-model.number="stock"
             type="text"
             class="w-96 border border-gray-400 rounded-md py-2 px-4 text-black"
           />

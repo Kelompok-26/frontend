@@ -47,7 +47,7 @@ const actions = {
       })
     }
 
-    store.commit('setisAuth', true)
+    // store.commit('setisAuth', true)
     store.commit('setToken', response.data.Admin)
 
     this.$router.push('/admin/dashboard')
