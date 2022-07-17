@@ -105,9 +105,11 @@
       <NuxtLink to="/">
         <p class="hover:font-bold transition-all">Home</p>
       </NuxtLink>
+
       <NuxtLink to="/User/riwayat">
         <p class="hover:font-bold transition-all">Riwayat</p>
       </NuxtLink>
+      
       <NuxtLink to="/User/point-user">
         <p class="hover:font-bold transition-all">Poin</p>
       </NuxtLink>

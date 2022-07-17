@@ -37,10 +37,10 @@
           <div class="flex flex-col gap-2">
             <label for="Notelephone">Email</label>
             <input
+              id=""
               v-model="email"
               type="text"
               name="email"
-              id=""
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
             />
           </div>
@@ -57,8 +57,8 @@
           </div>
         </div>
         <div
-          @click="auth"
           class="w-full bg-[#EE6F57] text-white rounded-lg aspect-[7.4/1] text-xl font-bold flex items-center cursor-pointer justify-center"
+          @click="auth"
         >
           Login
         </div>

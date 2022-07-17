@@ -91,7 +91,7 @@
           </svg>
         </div>
         <div class="flex flex-col gap-2 items-start justify-start">
-          <p class="font-bold text-2xl">57</p>
+          <p class="font-bold text-2xl">{{getAllUser}}</p>
           <p class="text-md">Total Pengguna <br />C-Loyal</p>
         </div>
       </div>
@@ -170,7 +170,7 @@
         </div>
         <div class="flex flex-col gap-2 items-start justify-start">
           <p class="font-bold text-2xl">57</p>
-          <p class="text-md">Total Pengguna <br />C-Loyal</p>
+          <p class="text-md">Total penukaran dilakukan hari ini <br />C-Loyal</p>
         </div>
       </div>
     </div>
@@ -360,11 +360,17 @@ export default {
       getAllTransaction(){
         return this.$store.state.adminDashboard.AllTran
       },
+      getAllUser(){
+        return this.$store.state.adminDashboard.AllTran
+      },
     },
   created(){
       const tokens = this.$store.state.adminAuth.token
       this.type_product = this.$store.state.adminProduct.type
       this.$store.dispatch('adminDashboard/getAllTransaction', {
+        token: tokens
+      })
+      this.$store.dispatch('adminDashboard/getAllUser', {
         token: tokens
       })
   },
