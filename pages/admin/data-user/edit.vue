@@ -1,7 +1,6 @@
 <template>
   <div class="w-full px-10 flex flex-col gap-4">
     <span class="text-2xl font-bold">Data User</span>
-    {{ point }}
     <div class="flex items-center justify-end gap-5">
       <p class="text-[#00334E]">Beranda</p>
       <svg
