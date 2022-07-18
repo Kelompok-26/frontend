@@ -1,7 +1,8 @@
 export default {
+  // `https://api.capstone.thisham.my.id/dashboards/${this.feature}`
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'fe-capstone',
+    title: 'C-Loyal - Loyalty Point Agency ',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
