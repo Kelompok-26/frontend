@@ -6,11 +6,41 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'C-Loyal merupakan aplikasi yang memberikan kemudahan untuk Anda bertransaksi dengan penawaran-penawaran yang kami berikan. Selain itu dengan melakukan transaksi pada C-Loyal Anda juga berhak mendapatkan reward berupa poin yang telah kami kalkulasikan sesuai dengan transaksi yang Anda lakukan sebelumnya, bahkan poin yang Anda kumpulkan dapat pula dimanfaatkan untuk membeli penawaran menarik lainnya dengan fitur tukar poin. ',
+      },
       { name: 'format-detection', content: 'telephone=no' },
+      { property: 'og:site_name', content: 'C-Loyal' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://cloyal.xyz',
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'C-Loyal - Loyalty Point Agency',
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content:
+          'C-Loyal merupakan aplikasi yang memberikan kemudahan untuk Anda bertransaksi dengan penawaran-penawaran yang kami berikan. Selain itu dengan melakukan transaksi pada C-Loyal Anda juga berhak mendapatkan reward berupa poin yang telah kami kalkulasikan sesuai dengan transaksi yang Anda lakukan sebelumnya, bahkan poin yang Anda kumpulkan dapat pula dimanfaatkan untuk membeli penawaran menarik lainnya dengan fitur tukar poin.',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: '/Cloyal.png',
+      },
+      { property: 'og:image:width', content: '740' },
+      { property: 'og:image:height', content: '300' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/Cloyal.png' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
       {

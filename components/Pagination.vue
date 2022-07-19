@@ -191,7 +191,11 @@ export default {
         },
       }
 
-      this.$axios(config).then((res) => console.log(res))
+      this.$axios(config).then((res) =>
+        this.$store.dispatch('adminProduct/messageUser', {
+          message: res.data.message,
+        })
+      )
     },
     upNumber() {
       const banyakData = this.User.length

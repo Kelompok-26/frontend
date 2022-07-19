@@ -36,7 +36,8 @@
             <td class="px-6 py-4">{{ val.point }}</td>
             <td class="px-6 py-4 text-right">
               <div class="flex gap-4">
-                <div
+                <button
+                  type="submit"
                   @click="
                     editProduk(
                       val.id,
@@ -72,9 +73,10 @@
                       stroke-linejoin="round"
                     />
                   </svg>
-                </div>
+                </button>
 
-                <div
+                <button
+                  type="submit"
                   class="w-auto p-3 cursor-pointer rounded-md bg-[#EE6F57]"
                   @click="deleteUser(val.id)"
                 >
@@ -90,7 +92,7 @@
                       fill="white"
                     />
                   </svg>
-                </div>
+                </button>
               </div>
             </td>
           </tr>
@@ -206,8 +208,8 @@ export default {
     },
   },
   methods: {
-    editProduk(Id, tipe, provider, produk, nom, poin, stok) {
-      this.$store.dispatch('adminProduct/editProduk', {
+    async editProduk(Id, tipe, provider, produk, nom, poin, stok) {
+      await this.$store.dispatch('adminProduct/editProduk', {
         id: Id,
         type_product: tipe,
         product_name: produk,
@@ -226,7 +228,11 @@ export default {
         },
       }
 
-      this.$axios(config).then((res) => console.log(res))
+      this.$axios(config).then((res) =>
+        this.$store.dispatch('adminProduct/messageUser', {
+          message: res.data.message,
+        })
+      )
     },
     upNumber() {
       const banyakData = this.panjang

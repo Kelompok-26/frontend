@@ -49,7 +49,10 @@
 
     <!-- Start success card -->
 
-    <div class="w-full px-4 flex flex-col gap-6 py-3 bg-[#145374] rounded-md">
+    <div
+      class="w-full px-4 flex flex-col gap-6 py-3 bg-[#145374] rounded-md"
+      v-if="getMes"
+    >
       <div class="flex justify-between">
         <div class="flex items-center gap-4">
           <svg
@@ -68,11 +71,12 @@
         </div>
 
         <svg
+          @click="closeMes"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
           fill="currentColor"
-          class="bi bi-x fill-white"
+          class="bi bi-x fill-white cursor-pointer"
           viewBox="0 0 16 16"
         >
           <path
@@ -81,7 +85,7 @@
         </svg>
       </div>
 
-      <p class="text-white font-light">Data user berhasil disimpan.</p>
+      <p class="text-white font-light">{{ getIsiMes }}. Refresh this page!</p>
     </div>
     <!-- End Of success card -->
 
@@ -113,7 +117,12 @@ export default {
     getStok() {
       return this.$store.state.adminStock.Stok
     },
-
+    getMes() {
+      return this.$store.state.adminProduct.mes
+    },
+    getIsiMes() {
+      return this.$store.state.adminProduct.Isimes
+    },
     getPanjang() {
       if (this.product === 'Paket Data') {
         return this.$store.state.adminStock.PanjangPaket
@@ -138,24 +147,26 @@ export default {
     },
   },
 
-  created() {
+  async created() {
     this.tokens = this.$store.state.adminAuth.token
     this.product = this.$route.params.typeProduct
     const produk = this.$route.params.typeProduct
     // const tipe = this.$route.params.typeProduct
     if (produk === 'Paket Data') {
-      this.$store.dispatch('adminStock/getAllStokPaket')
+      await this.$store.dispatch('adminStock/getAllStokPaket')
     } else if (produk === 'Pulsa') {
-      this.$store.dispatch('adminStock/getAllStokPulsa')
+      await this.$store.dispatch('adminStock/getAllStokPulsa')
     } else if (produk === 'Cashout') {
-      this.$store.dispatch('adminStock/getAllStokCash')
+      await this.$store.dispatch('adminStock/getAllStokCash')
     } else if (produk === 'E-Money') {
-      this.$store.dispatch('adminStock/getAllStokEmoney')
+      await this.$store.dispatch('adminStock/getAllStokEmoney')
     }
   },
 
   methods: {
-    
+    async closeMes() {
+      await this.$store.dispatch('adminProduct/closeMes')
+    },
     inputContext() {
       this.$router.push({
         name: 'admin-typeProduct-input',

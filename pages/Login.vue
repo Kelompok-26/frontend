@@ -2,6 +2,43 @@
   <div
     class="w-full min-h-screen h-full fixed mx-auto flex flex-row max-w-screen-2xl bg-[#145374]"
   >
+    <div
+      class="fixed bg-black/50 w-full min-h-screen h-full left-0 top-0"
+      v-if="loading"
+    >
+      <div class="flex items-center justify-center h-screen">
+        <button
+          :class="{
+            'scale-0': !loading,
+            'scale-100': loading,
+          }"
+          type="button"
+          class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-[#145374] transition ease-in-out duration-300"
+        >
+          <svg
+            class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+          Processing...
+        </button>
+      </div>
+    </div>
     <!-- Start Content -->
     <div class="h-full w-1/2 flex items-center justify-center bg-[#F6F5F5]">
       <svg
@@ -961,7 +998,7 @@
           <label class="text-white">Phone Number or Email</label>
           <input
             v-model="email"
-            type="text"
+            type="email"
             class="bg-gray-200 rounded-lg w-full py-2 px-4 text-gray-700"
           />
         </div>
@@ -974,7 +1011,7 @@
             class="bg-gray-200 rounded-lg w-full py-2 px-4 text-gray-700"
           />
         </div>
-
+        <p class="-mt-8 -mb-2 text-red-500">{{ getError }}</p>
         <button
           class="text-slate-100 bg-[#EE6F57] w-96 py-2 px-4 rounded-md"
           @click="auth"
@@ -1006,9 +1043,18 @@ export default {
     }
   },
 
+  async created() {
+    await this.$store.dispatch('userAuth/setErrorNull')
+  },
   computed: {
+    loading() {
+      return this.$store.state.userAuth.loading
+    },
     getisAuth() {
       return this.$store.state.userAuth.isAuth
+    },
+    getError() {
+      return this.$store.state.userAuth.error
     },
   },
   methods: {

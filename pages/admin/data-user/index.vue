@@ -51,7 +51,10 @@
 
     <!-- Start success card -->
 
-    <div class="w-full px-4 flex flex-col gap-6 py-3 bg-[#145374] rounded-md">
+    <div
+      class="w-full px-4 flex flex-col gap-6 py-3 bg-[#145374] rounded-md"
+      v-if="getMes"
+    >
       <div class="flex justify-between">
         <div class="flex items-center gap-4">
           <svg
@@ -70,11 +73,12 @@
         </div>
 
         <svg
+          @click="closeMes"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
           fill="currentColor"
-          class="bi bi-x fill-white"
+          class="bi bi-x fill-white cursor-pointer"
           viewBox="0 0 16 16"
         >
           <path
@@ -83,7 +87,7 @@
         </svg>
       </div>
 
-      <p class="text-white font-light">Data user berhasil disimpan.</p>
+      <p class="text-white font-light">{{ getIsiMes }}</p>
     </div>
     <!-- End Of success card -->
 
@@ -106,19 +110,29 @@ export default {
   },
 
   computed: {
+    getMes() {
+      return this.$store.state.adminUser.mes
+    },
+    getIsiMes() {
+      return this.$store.state.adminUser.Isimes
+    },
     getUser() {
       return this.$store.state.adminUser.adminUser
     },
   },
-  created() {
+  async created() {
+    this.$nuxt.refresh()
     this.tokens = this.$store.state.adminAuth.token
     const tokens = this.$store.state.adminAuth.token
-    this.$store.dispatch('adminUser/getAllUser', {
+    await this.$store.dispatch('adminUser/getAllUser', {
       token: tokens,
     })
   },
 
   methods: {
+    async closeMes() {
+      await this.$store.dispatch('adminUser/closeMes')
+    },
     refresh() {
       this.$nuxt.refresh()
     },

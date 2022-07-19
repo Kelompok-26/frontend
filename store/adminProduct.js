@@ -7,6 +7,8 @@ export const state = () => ({
   stok: null,
   tipeProd: null,
   poin: null,
+  mes: false,
+  Isimes: null,
 })
 
 export const getter = {}
@@ -39,6 +41,12 @@ export const mutations = {
   setType(state, param) {
     state.tipeProd = param
   },
+  setMessage(state, param) {
+    state.mes = param
+  },
+  IsisetMessage(state, param) {
+    state.Isimes = param
+  },
 }
 
 export const actions = {
@@ -63,7 +71,10 @@ export const actions = {
       data: createProdak,
     }
 
-    this.$axios(config).then((res) => console.log(res))
+    this.$axios(config).then((res) =>
+      store.commit('IsisetMessage', res.data.message)
+    )
+    store.commit('setMessage', true)
   },
   editProduk(store, param) {
     store.commit('setId', param.id)
@@ -80,5 +91,15 @@ export const actions = {
         typeProduct: param.type_product,
       },
     })
+  },
+
+  messageUser(store, param) {
+    store.commit('setMessage', true)
+    store.commit('IsisetMessage', param.message)
+  },
+
+  closeMes(store) {
+    store.commit('setMessage', false)
+    store.commit('IsisetMessage', null)
   },
 }

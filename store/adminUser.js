@@ -3,6 +3,8 @@ export const state = () => ({
   token: '',
   Id: null,
   point: null,
+  mes: false,
+  Isimes: null,
 })
 
 export const mutations = {
@@ -18,6 +20,12 @@ export const mutations = {
   setPoint(state, param) {
     state.point = param
   },
+  setMessage(state, param) {
+    state.mes = param
+  },
+  IsisetMessage(state, param) {
+    state.Isimes = param
+  },
 }
 
 export const actions = {
@@ -32,7 +40,15 @@ export const actions = {
 
     this.$axios(config).then((res) => store.commit('setGetUser', res.data.data))
   },
+  messageUser(store, param) {
+    store.commit('setMessage', true)
+    store.commit('IsisetMessage', param.message)
+  },
 
+  closeMes(store) {
+    store.commit('setMessage', false)
+    store.commit('IsisetMessage', null)
+  },
   getIndexData(store, param) {
     store.commit('setToken', param.token)
     store.commit('setId', param.Id)

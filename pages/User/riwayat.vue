@@ -8,11 +8,25 @@
     <!-- Start Riwayat Poin -->
     <div>
       <div class="flex flex-col gap-4">
+        <div
+          class="items-start flex justify-center pb-64 pt-20 text-5xl font-bold"
+          v-if="trans === null"
+        >
+          No Transactions Yet
+        </div>
         <div class="flex flex-col-gap-4" v-for="(trk, idx) in trans" :key="idx">
           <div
-            class="w-full aspect-[8.06/1] flex flex-col bg-white gap-4 border-b-[1px] border-black py-6 px-5"
+            class="w-full aspect-[8.06/1] flex flex-col bg-white gap-4 border-b-[1px] border-black py-6 px-5 cursor-pointer"
+            @click="toDetailRiwayat(trk)"
           >
-            <span class="text-lg">{{ trk.created_at }}</span>
+            <span class="text-lg">{{
+              new Date(trk.created_at).toLocaleDateString({
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }}</span>
 
             <div class="flex justify-between text-xl">
               <div class="flex flex-col items-start justify-start gap-2">
@@ -112,6 +126,12 @@ export default {
     }
   },
 
+  methods: {
+    toDetailRiwayat(obj) {
+      this.$store.dispatch('detailProduct/getObjTrans', obj)
+      this.$router.push('/User/detail-riwayat-poin')
+    },
+  },
   created() {
     const tokens = this.$store.state.userAuth.token
     const id = this.$store.state.userAuth.id

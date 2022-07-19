@@ -109,7 +109,7 @@
       <NuxtLink to="/User/riwayat">
         <p class="hover:font-bold transition-all">Riwayat</p>
       </NuxtLink>
-      
+
       <NuxtLink to="/User/point-user">
         <p class="hover:font-bold transition-all">Poin</p>
       </NuxtLink>
@@ -194,9 +194,9 @@
           <NuxtLink to="/User/privacy-policy">
             <span class="cursor-pointer">Privacy Policy</span>
           </NuxtLink>
-          <Nuxtlink to="/User/syarat-ketentuan">
+          <NuxtLink to="/User/syarat-ketentuan">
             <span class="cursor-pointer">Terms of Service</span>
-          </Nuxtlink>
+          </NuxtLink>
         </div>
 
         <hr class="w-full border-b-1 border-gray-700" />
