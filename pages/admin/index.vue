@@ -1,5 +1,42 @@
 <template>
   <div class="w-full h-screen flex mx-auto">
+    <div
+      class="fixed bg-black/50 w-full min-h-screen h-full left-0 top-0"
+      v-if="loading"
+    >
+      <div class="flex items-center justify-center h-screen">
+        <button
+          :class="{
+            'scale-0': !loading,
+            'scale-100': loading,
+          }"
+          type="button"
+          class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-[#145374] transition ease-in-out duration-300"
+        >
+          <svg
+            class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+          Processing...
+        </button>
+      </div>
+    </div>
     <div class="w-1/2 h-full flex items-center justify-center bg-[#F6F5F5]">
       <svg
         width="577"
@@ -54,6 +91,7 @@
               class="bg-[#D9D9D9] py-1 rounded-lg px-4 text-black aspect-[9.6/1]"
             />
           </div>
+          <p class="-mt-2 -mb-2 text-red-500">{{ getError }}</p>
         </div>
         <div
           class="w-full bg-[#EE6F57] text-white rounded-lg aspect-[7.4/1] text-xl font-bold flex items-center cursor-pointer justify-center"
@@ -75,8 +113,16 @@ export default {
       password: '',
     }
   },
-
+  async created() {
+    await this.$store.dispatch('adminAuth/setErrorNull')
+  },
   computed: {
+    getError() {
+      return this.$store.state.adminAuth.error
+    },
+    loading() {
+      return this.$store.state.adminAuth.loading
+    },
     getLevel() {
       return this.$store.state.adminAuth.level
     },

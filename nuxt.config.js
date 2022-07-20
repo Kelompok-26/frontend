@@ -40,7 +40,7 @@ export default {
       { property: 'og:image:height', content: '300' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/Cloyal.png' },
+      { rel: 'icon', type: 'image/x-icon', href: './Cloyal.png' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
       {
